@@ -1,0 +1,102 @@
+#!/bin/bash
+set -ex
+
+to_output() {
+    {
+        echo "+" "$@"
+        "$@"
+        echo
+    } >>"$OUTPUT_FILE"
+}
+date_epoch() { date "+%s"; }
+date_readable() { date "+%Y-%m-%d %H:%M:%S"; }
+
+OUTPUT_FILE="$PWD/results/$(date_epoch).txt"
+
+########################################################################
+# Hardware and system information
+########################################################################
+
+do_hardware_info() {
+    to_output uname -a
+    to_output lsb_release -a
+    to_output nproc
+    to_output free -h
+    to_output lshw -sanitize -notime
+}
+
+########################################################################
+# Clean
+########################################################################
+
+do_clean() {
+    rm -fr poky/
+}
+
+########################################################################
+# Download
+########################################################################
+
+do_download() {
+    START_DOWNLOAD=$(date_epoch)
+    to_output echo "$(date_readable) Downloading..."
+
+    git clone git://git.yoctoproject.org/poky --branch kirkstone
+
+    cd poky
+    to_output git describe --always
+    source oe-init-build-env
+
+    bitbake core-image-minimal --runall=fetch
+    bitbake core-image-minimal -c populate_sdk --runall=fetch
+
+    END_DOWNLOAD=$(date_epoch)
+    TIME_DOWNLOAD=$((END_DOWNLOAD - START_DOWNLOAD))
+    to_output echo "$(date_readable) Download time: $TIME_DOWNLOAD s"
+}
+
+do_builds() {
+    ########################################################################
+    # Build image
+    ########################################################################
+
+    START_IMAGE=$(date_epoch)
+    to_output echo "$(date_readable) Building image..."
+
+    bitbake core-image-minimal
+
+    END_IMAGE=$(date_epoch)
+    TIME_IMAGE=$((END_IMAGE - START_IMAGE))
+    to_output echo "$(date_readable) Image build time: $TIME_IMAGE s"
+
+    ########################################################################
+    # Build SDK
+    ########################################################################
+
+    START_SDK=$(date_epoch)
+    to_output echo "$(date_readable) Building SDK..."
+
+    bitbake core-image-minimal -c populate_sdk
+
+    END_SDK=$(date_epoch)
+    TIME_SDK=$((END_SDK - START_SDK))
+    to_output echo "$(date_readable) SDK build time: $TIME_SDK s"
+
+    ########################################################################
+    # Total
+    ########################################################################
+
+    to_output du -sh downloads sstate-cache tmp
+
+    TOTAL_BUILD_TIME=$((END_SDK - START_IMAGE))
+    to_output echo "\
+    Download time: $TIME_DOWNLOAD s
+    Image build time: $TIME_IMAGE s
+    SDK build time: $TIME_SDK s
+    Total build time: $TOTAL_BUILD_TIME s"
+}
+
+do_hardware_info
+do_clean
+do_download
+do_builds
