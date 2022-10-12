@@ -38,7 +38,9 @@ do_hardware_info() {
 ########################################################################
 
 do_clean() {
-    rm -fr poky/
+    # Clean only tmp and sstate-cache avoids having to download
+    # everything again when restarting
+    rm -fr poky/build/tmp/ poky/build/sstate-cache/
 }
 
 ########################################################################
@@ -49,6 +51,7 @@ do_download() {
     START_DOWNLOAD=$(date_epoch)
     to_output echo "$(date_readable) Downloading..."
 
+    [ -d poky ] ||
     git clone git://git.yoctoproject.org/poky --branch kirkstone
 
     cd poky
