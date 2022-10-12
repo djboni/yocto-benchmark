@@ -23,7 +23,7 @@ OUTPUT_FILE="$PWD/results/$(date_epoch).txt"
 ########################################################################
 
 do_hardware_info() {
-    to_output uname -a
+    to_output echo "$(uname -a | sed "s/$(uname -n)/hostname/")"
     to_output lsb_release -a
     to_output nproc
     to_output free -h
