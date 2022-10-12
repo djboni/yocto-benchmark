@@ -27,7 +27,7 @@ do_hardware_info() {
     to_output lsb_release -a
     to_output nproc
     to_output free -h
-    to_output lshw -sanitize -notime
+    to_output sudo lshw -sanitize -notime
 }
 
 ########################################################################
