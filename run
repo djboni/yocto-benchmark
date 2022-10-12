@@ -6,6 +6,9 @@ export LC_ALL=C
 export LANG=C
 export LANGUAGE=C
 
+# Create directory if it does not exist
+mkdir -p results
+
 to_output() {
     {
         echo "+" "$@"
