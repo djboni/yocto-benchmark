@@ -27,7 +27,12 @@ Installer for Ubuntu:
 $ ./install
 ```
 
-## Step 3 - Run the benchmark
+## Step 3 - Restart and run the benchmark
+
+Restart the computer before running the benchmark, specially if you are
+rerunning it for any reason. Restarting the computer will make sure
+there is the most RAM available for the build and, at the same time,
+there will be no previous file system caching at the start of the build.
 
 ```console
 $ ./run
