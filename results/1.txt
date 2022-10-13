@@ -1,0 +1,506 @@
++ echo Linux hostname 5.15.0-50-generic #56~20.04.1-Ubuntu SMP Tue Sep 27 15:51:29 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux
+Linux hostname 5.15.0-50-generic #56~20.04.1-Ubuntu SMP Tue Sep 27 15:51:29 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux
+
++ lsb_release -a
+Distributor ID:	Ubuntu
+Description:	Ubuntu 20.04.5 LTS
+Release:	20.04
+Codename:	focal
+
++ nproc
+4
+
++ free -h
+              total        used        free      shared  buff/cache   available
+Mem:           15Gi       4.4Gi       9.4Gi       142Mi       1.7Gi        10Gi
+Swap:          18Gi          0B        18Gi
+
++ sudo lshw -sanitize -notime
+computer
+    description: Desktop Computer
+    product: System Product Name (SKU)
+    vendor: System manufacturer
+    version: System Version
+    serial: [REMOVED]
+    width: 64 bits
+    capabilities: smbios-2.7 dmi-2.7 smp vsyscall32
+    configuration: boot=normal chassis=desktop family=To be filled by O.E.M. sku=SKU uuid=[REMOVED]
+  *-core
+       description: Motherboard
+       product: H61M-E
+       vendor: ASUSTeK COMPUTER INC.
+       physical id: 0
+       version: Rev X.0x
+       serial: [REMOVED]
+       slot: To be filled by O.E.M.
+     *-firmware
+          description: BIOS
+          vendor: American Megatrends Inc.
+          physical id: 0
+          version: 1104
+          date: 06/24/2014
+          size: 64KiB
+          capacity: 8MiB
+          capabilities: pci upgrade shadowing cdboot bootselect socketedrom edd int13floppy1200 int13floppy720 int13floppy2880 int5printscreen int9keyboard int14serial int17printer acpi usb biosbootspecification uefi
+     *-cpu
+          description: CPU
+          product: Intel(R) Core(TM) i5-3330 CPU @ 3.00GHz
+          vendor: Intel Corp.
+          physical id: 4
+          bus info: cpu@0
+          version: Intel(R) Core(TM) i5-3330 CPU @ 3.00GHz
+          serial: [REMOVED]
+          slot: LGA1155
+          size: 1689MHz
+          capacity: 3800MHz
+          width: 64 bits
+          clock: 100MHz
+          capabilities: lm fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx rdtscp x86-64 constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm cpuid_fault epb pti ssbd ibrs ibpb stibp tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms xsaveopt dtherm ida arat pln pts md_clear flush_l1d cpufreq
+          configuration: cores=4 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: 5
+             slot: L1-Cache
+             size: 256KiB
+             capacity: 256KiB
+             capabilities: internal write-back unified
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 6
+             slot: L2-Cache
+             size: 1MiB
+             capacity: 1MiB
+             capabilities: internal varies unified
+             configuration: level=2
+        *-cache:2 DISABLED
+             description: L3 cache
+             physical id: 7
+             slot: L3-Cache
+             size: 6MiB
+             capacity: 6MiB
+             capabilities: internal unified
+             configuration: level=3
+     *-memory
+          description: System memory
+          physical id: 1
+          size: 16GiB
+        *-bank:0
+             description: SODIMM DDR3 Synchronous 1600 MHz (0.6 ns)
+             product: [Empty]
+             vendor: 0000
+             physical id: 0
+             serial: [REMOVED]
+             slot: ChannelA-DIMM0
+             size: 8GiB
+             width: 64 bits
+             clock: 1600MHz (0.6ns)
+        *-bank:1
+             description: SODIMM DDR3 Synchronous 1600 MHz (0.6 ns)
+             product: [Empty]
+             vendor: 0000
+             physical id: 1
+             serial: [REMOVED]
+             slot: ChannelB-DIMM0
+             size: 8GiB
+             width: 64 bits
+             clock: 1600MHz (0.6ns)
+     *-pci
+          description: Host bridge
+          product: Xeon E3-1200 v2/3rd Gen Core processor DRAM Controller
+          vendor: Intel Corporation
+          physical id: 100
+          bus info: pci@0000:00:00.0
+          version: 09
+          width: 32 bits
+          clock: 33MHz
+          configuration: driver=ivb_uncore
+          resources: irq:0
+        *-pci:0
+             description: PCI bridge
+             product: Xeon E3-1200 v2/3rd Gen Core processor PCI Express Root Port
+             vendor: Intel Corporation
+             physical id: 1
+             bus info: pci@0000:00:01.0
+             version: 09
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pm msi pciexpress normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:25 ioport:e000(size=4096) memory:f6000000-f70fffff ioport:e0000000(size=301989888)
+           *-display
+                description: VGA compatible controller
+                product: GM107 [GeForce GTX 750 Ti]
+                vendor: NVIDIA Corporation
+                physical id: 0
+                bus info: pci@0000:01:00.0
+                version: a2
+                width: 64 bits
+                clock: 33MHz
+                capabilities: pm msi pciexpress vga_controller bus_master cap_list rom
+                configuration: driver=nouveau latency=0
+                resources: irq:29 memory:f6000000-f6ffffff memory:e0000000-efffffff memory:f0000000-f1ffffff ioport:e000(size=128) memory:c0000-dffff
+           *-multimedia
+                description: Audio device
+                product: GM107 High Definition Audio Controller [GeForce 940MX]
+                vendor: NVIDIA Corporation
+                physical id: 0.1
+                bus info: pci@0000:01:00.1
+                version: a1
+                width: 32 bits
+                clock: 33MHz
+                capabilities: pm msi pciexpress bus_master cap_list
+                configuration: driver=snd_hda_intel latency=0
+                resources: irq:17 memory:f7080000-f7083fff
+        *-communication
+             description: Communication controller
+             product: 6 Series/C200 Series Chipset Family MEI Controller #1
+             vendor: Intel Corporation
+             physical id: 16
+             bus info: pci@0000:00:16.0
+             version: 04
+             width: 64 bits
+             clock: 33MHz
+             capabilities: pm msi bus_master cap_list
+             configuration: driver=mei_me latency=0
+             resources: irq:28 memory:f710a000-f710a00f
+        *-usb:0
+             description: USB controller
+             product: 6 Series/C200 Series Chipset Family USB Enhanced Host Controller #2
+             vendor: Intel Corporation
+             physical id: 1a
+             bus info: pci@0000:00:1a.0
+             version: 05
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pm debug ehci bus_master cap_list
+             configuration: driver=ehci-pci latency=0
+             resources: irq:23 memory:f7108000-f71083ff
+           *-usbhost
+                product: EHCI Host Controller
+                vendor: Linux 5.15.0-50-generic ehci_hcd
+                physical id: 1
+                bus info: usb@1
+                logical name: usb1
+                version: 5.15
+                capabilities: usb-2.00
+                configuration: driver=hub slots=2 speed=480Mbit/s
+              *-usb
+                   description: USB hub
+                   product: Integrated Rate Matching Hub
+                   vendor: Intel Corp.
+                   physical id: 1
+                   bus info: usb@1:1
+                   version: 0.00
+                   capabilities: usb-2.00
+                   configuration: driver=hub slots=4 speed=480Mbit/s
+        *-multimedia
+             description: Audio device
+             product: 6 Series/C200 Series Chipset Family High Definition Audio Controller
+             vendor: Intel Corporation
+             physical id: 1b
+             bus info: pci@0000:00:1b.0
+             version: 05
+             width: 64 bits
+             clock: 33MHz
+             capabilities: pm msi pciexpress bus_master cap_list
+             configuration: driver=snd_hda_intel latency=0
+             resources: irq:30 memory:f7100000-f7103fff
+        *-pci:1
+             description: PCI bridge
+             product: 6 Series/C200 Series Chipset Family PCI Express Root Port 1
+             vendor: Intel Corporation
+             physical id: 1c
+             bus info: pci@0000:00:1c.0
+             version: b5
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pciexpress msi pm normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:16
+        *-pci:2
+             description: PCI bridge
+             product: 6 Series/C200 Series Chipset Family PCI Express Root Port 6
+             vendor: Intel Corporation
+             physical id: 1c.5
+             bus info: pci@0000:00:1c.5
+             version: b5
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pciexpress msi pm normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:17 ioport:d000(size=4096) ioport:f2100000(size=1048576)
+           *-network
+                description: Ethernet interface
+                product: RTL8111/8168/8411 PCI Express Gigabit Ethernet Controller
+                vendor: Realtek Semiconductor Co., Ltd.
+                physical id: 0
+                bus info: pci@0000:03:00.0
+                logical name: enp3s0
+                version: 09
+                serial: [REMOVED]
+                capacity: 1Gbit/s
+                width: 64 bits
+                clock: 33MHz
+                capabilities: pm msi pciexpress msix vpd bus_master cap_list ethernet physical tp mii 10bt 10bt-fd 100bt 100bt-fd 1000bt-fd autonegotiation
+                configuration: autonegotiation=on broadcast=yes driver=r8169 driverversion=5.15.0-50-generic firmware=rtl8168f-1_0.0.5 06/18/12 latency=0 link=no multicast=yes port=twisted pair
+                resources: irq:17 ioport:d000(size=256) memory:f2104000-f2104fff memory:f2100000-f2103fff
+        *-usb:1
+             description: USB controller
+             product: 6 Series/C200 Series Chipset Family USB Enhanced Host Controller #1
+             vendor: Intel Corporation
+             physical id: 1d
+             bus info: pci@0000:00:1d.0
+             version: 05
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pm debug ehci bus_master cap_list
+             configuration: driver=ehci-pci latency=0
+             resources: irq:23 memory:f7107000-f71073ff
+           *-usbhost
+                product: EHCI Host Controller
+                vendor: Linux 5.15.0-50-generic ehci_hcd
+                physical id: 1
+                bus info: usb@2
+                logical name: usb2
+                version: 5.15
+                capabilities: usb-2.00
+                configuration: driver=hub slots=2 speed=480Mbit/s
+              *-usb
+                   description: USB hub
+                   product: Integrated Rate Matching Hub
+                   vendor: Intel Corp.
+                   physical id: 1
+                   bus info: usb@2:1
+                   version: 0.00
+                   capabilities: usb-2.00
+                   configuration: driver=hub slots=6 speed=480Mbit/s
+                 *-usb
+                      description: Generic USB device
+                      product: 802.11 n WLAN
+                      vendor: MediaTek
+                      physical id: 2
+                      bus info: usb@2:1.2
+                      version: 0.00
+                      serial: [REMOVED]
+                      capabilities: usb-2.01
+                      configuration: driver=mt7601u maxpower=160mA speed=480Mbit/s
+        *-isa
+             description: ISA bridge
+             product: H61 Express Chipset LPC Controller
+             vendor: Intel Corporation
+             physical id: 1f
+             bus info: pci@0000:00:1f.0
+             version: 05
+             width: 32 bits
+             clock: 33MHz
+             capabilities: isa bus_master cap_list
+             configuration: driver=lpc_ich latency=0
+             resources: irq:0
+        *-sata
+             description: SATA controller
+             product: 6 Series/C200 Series Chipset Family 6 port Desktop SATA AHCI Controller
+             vendor: Intel Corporation
+             physical id: 1f.2
+             bus info: pci@0000:00:1f.2
+             version: 05
+             width: 32 bits
+             clock: 66MHz
+             capabilities: sata msi pm ahci_1.0 bus_master cap_list
+             configuration: driver=ahci latency=0
+             resources: irq:27 ioport:f070(size=8) ioport:f060(size=4) ioport:f050(size=8) ioport:f040(size=4) ioport:f020(size=32) memory:f7106000-f71067ff
+        *-serial
+             description: SMBus
+             product: 6 Series/C200 Series Chipset Family SMBus Controller
+             vendor: Intel Corporation
+             physical id: 1f.3
+             bus info: pci@0000:00:1f.3
+             version: 05
+             width: 64 bits
+             clock: 33MHz
+             configuration: driver=i801_smbus latency=0
+             resources: irq:18 memory:f7105000-f71050ff ioport:f000(size=32)
+     *-pnp00:00
+          product: PnP device PNP0c01
+          physical id: 2
+          capabilities: pnp
+          configuration: driver=system
+     *-pnp00:01
+          product: PnP device PNP0c02
+          physical id: 3
+          capabilities: pnp
+          configuration: driver=system
+     *-pnp00:02
+          product: PnP device PNP0b00
+          physical id: 5
+          capabilities: pnp
+          configuration: driver=rtc_cmos
+     *-pnp00:03
+          product: PnP device INT3f0d
+          physical id: 6
+          capabilities: pnp
+          configuration: driver=system
+     *-pnp00:04
+          product: PnP device PNP0c02
+          physical id: 7
+          capabilities: pnp
+          configuration: driver=system
+     *-pnp00:05
+          product: PnP device PNP0c02
+          physical id: 8
+          capabilities: pnp
+          configuration: driver=system
+     *-pnp00:06
+          product: PnP device PNP0c02
+          physical id: 9
+          capabilities: pnp
+          configuration: driver=system
+     *-scsi:0
+          physical id: a
+          logical name: scsi0
+          capabilities: emulated
+        *-disk
+             description: ATA Disk
+             product: ST2000DM001-1CH1
+             physical id: 0.0.0
+             bus info: scsi@0:0.0.0
+             logical name: /dev/sda
+             version: CC29
+             serial: [REMOVED]
+             size: 1863GiB (2TB)
+             capabilities: partitioned partitioned:dos
+             configuration: ansiversion=5 logicalsectorsize=512 sectorsize=4096 signature=ee3ac3ab
+           *-volume:0
+                description: EXT4 volume
+                vendor: Linux
+                physical id: 1
+                bus info: scsi@0:0.0.0,1
+                logical name: /dev/sda1
+                logical name: /boot
+                version: 1.0
+                serial: [REMOVED]
+                size: 9536MiB
+                capacity: 9536MiB
+                capabilities: primary bootable journaled extended_attributes large_files huge_files dir_nlink 64bit extents ext4 ext2 initialized
+                configuration: created=2021-05-31 16:09:56 filesystem=ext4 lastmountpoint=/boot mount.fstype=ext4 mount.options=rw,relatime state=mounted
+           *-volume:1
+                description: Extended partition
+                physical id: 2
+                bus info: scsi@0:0.0.0,2
+                logical name: /dev/sda2
+                size: 1853GiB
+                capacity: 1853GiB
+                capabilities: primary extended partitioned partitioned:extended
+              *-logicalvolume:0
+                   description: EXT4 volume
+                   vendor: Linux
+                   physical id: 5
+                   logical name: /dev/sda5
+                   logical name: /
+                   version: 1.0
+                   serial: [REMOVED]
+                   size: 93GiB
+                   capacity: 93GiB
+                   capabilities: journaled extended_attributes large_files huge_files dir_nlink recover 64bit extents ext4 ext2 initialized
+                   configuration: created=2021-05-31 16:09:57 filesystem=ext4 lastmountpoint=/ mount.fstype=ext4 mount.options=rw,relatime,errors=remount-ro state=mounted
+              *-logicalvolume:1
+                   description: Linux swap volume
+                   physical id: 6
+                   logical name: /dev/sda6
+                   version: 1
+                   serial: [REMOVED]
+                   size: 18GiB
+                   capacity: 18GiB
+                   capabilities: nofs swap initialized
+                   configuration: filesystem=swap pagesize=4096
+              *-logicalvolume:2
+                   description: EXT4 volume
+                   vendor: Linux
+                   physical id: 7
+                   logical name: /dev/sda7
+                   logical name: /home
+                   version: 1.0
+                   serial: [REMOVED]
+                   size: 1741GiB
+                   capacity: 1741GiB
+                   capabilities: journaled extended_attributes large_files huge_files dir_nlink recover 64bit extents ext4 ext2 initialized
+                   configuration: created=2021-05-31 16:10:01 filesystem=ext4 lastmountpoint=/home mount.fstype=ext4 mount.options=rw,relatime state=mounted
+     *-scsi:1
+          physical id: b
+          logical name: scsi1
+          capabilities: emulated
+        *-disk
+             description: ATA Disk
+             product: ST2000DM001-1CH1
+             physical id: 0.0.0
+             bus info: scsi@1:0.0.0
+             logical name: /dev/sdb
+             version: CC27
+             serial: [REMOVED]
+             size: 1863GiB (2TB)
+             capabilities: partitioned partitioned:dos
+             configuration: ansiversion=5 logicalsectorsize=512 sectorsize=4096 signature=8df3ebde
+           *-volume
+                description: EXT4 volume
+                vendor: Linux
+                physical id: 1
+                bus info: scsi@1:0.0.0,1
+                logical name: /dev/sdb1
+                logical name: /home/extra
+                version: 1.0
+                serial: [REMOVED]
+                size: 1863GiB
+                capacity: 1863GiB
+                capabilities: primary journaled extended_attributes large_files huge_files dir_nlink recover 64bit extents ext4 ext2 initialized
+                configuration: created=2021-05-31 16:10:13 filesystem=ext4 lastmountpoint=/home/extra mount.fstype=ext4 mount.options=rw,relatime state=mounted
+  *-power UNCLAIMED
+       description: To Be Filled By O.E.M.
+       product: To Be Filled By O.E.M.
+       vendor: To Be Filled By O.E.M.
+       physical id: 1
+       version: To Be Filled By O.E.M.
+       serial: [REMOVED]
+       capacity: 32768mWh
+  *-network
+       description: Wireless interface
+       physical id: 2
+       bus info: usb@2:1.2
+       logical name: wlx00e2b0104e3e
+       serial: [REMOVED]
+       capabilities: ethernet physical wireless
+       configuration: broadcast=yes driver=mt7601u driverversion=5.15.0-50-generic firmware=N/A ip=[REMOVED] link=yes multicast=yes wireless=IEEE 802.11
+
++ echo 2022-10-13 01:41:13 Downloading...
+2022-10-13 01:41:13 Downloading...
+
++ git describe --always
+yocto-4.0.4-62-geaf8ce9d39
+
++ echo 2022-10-13 01:42:47 Download time: 94 s
+2022-10-13 01:42:47 Download time: 94 s
+
++ echo 2022-10-13 01:42:47 Building image...
+2022-10-13 01:42:47 Building image...
+
++ echo 2022-10-13 05:41:22 Image build time: 14315 s
+2022-10-13 05:41:22 Image build time: 14315 s
+
++ echo 2022-10-13 05:41:22 Building SDK...
+2022-10-13 05:41:22 Building SDK...
+
++ echo 2022-10-13 07:34:26 SDK build time: 6784 s
+2022-10-13 07:34:26 SDK build time: 6784 s
+
++ du -sh downloads sstate-cache tmp
+5.2G	downloads
+4.3G	sstate-cache
+59G	tmp
+
++ echo     Download time: 94 s
+    Image build time: 14315 s
+    SDK build time: 6784 s
+    Total build time: 21099 s
+    Download time: 94 s
+    Image build time: 14315 s
+    SDK build time: 6784 s
+    Total build time: 21099 s

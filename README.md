@@ -34,6 +34,9 @@ rerunning it for any reason. Restarting the computer will make sure
 there is the most RAM available for the build and, at the same time,
 there will be no previous file system caching at the start of the build.
 
+The building process will download around 5.5 GB of source code and it
+will use about 65 GB more to build the image and SDK.
+
 ```console
 $ ./run
 ```
@@ -59,3 +62,22 @@ $ ./clean
 ## References
 
 - [Yocto Project Quick Build](https://docs.yoctoproject.org/brief-yoctoprojectqs/index.html)
+
+# Results
+
+![Build time vs Cores-GHz and RAM - 3D](images/figure1.svg)
+
+![Build time vs Cores-GHz and RAM - 2D](images/figure2.svg)
+
+| Machine | Cores | RAM GB | SSD/HD      | Time | Description                                                          |
+| ------- | ----- | ------ | ----------- | ---- | -------------------------------------------------------------------- |
+| 1       | 4     | 16     | HD          | 5h52 | Desktop, Intel(R) Core(TM) i5-3330 CPU @ 3.00GHz                     |
+| 3.1     | 4     | 8      | USB-SSD (a) | 7h00 | Laptop Dell Vostro 5480, Intel(R) Core(TM) i5-5200U CPU @ 2.20GHz    |
+| 2       | 4     | 16     | SSD         | 7h14 | Laptop Dell Inspiron 5140, Intel(R) Core(TM) i7-4510U CPU @ 2.00GHz  |
+| 3.2     | 4     | 8      | USB-HD (b)  | 7h19 | Laptop Dell Vostro 5480, Intel(R) Core(TM) i5-5200U CPU @ 2.20GHz    |
+| 4       | 4     | 8      | HD          | 7h24 | Laptop Dell Latitude E5440, Intel(R) Core(TM) i5-4200U CPU @ 1.60GHz |
+
+Notes:
+
+- (a) USB SSD.
+- (b) USB HD (same adapter as (a)).
