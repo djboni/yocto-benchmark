@@ -48,6 +48,14 @@ $ git add --all
 $ git commit -m "Result description"
 ```
 
+## Step 5 - Clean
+
+Clean the build to save disk space.
+
+```console
+$ ./clean
+```
+
 ## References
 
 - [Yocto Project Quick Build](https://docs.yoctoproject.org/brief-yoctoprojectqs/index.html)
