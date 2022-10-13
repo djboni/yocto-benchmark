@@ -55,6 +55,7 @@ do_download() {
     git clone git://git.yoctoproject.org/poky --branch kirkstone
 
     cd poky
+    git reset --hard yocto-4.0.4-62-geaf8ce9d39
     to_output git describe --always
     source oe-init-build-env
 
