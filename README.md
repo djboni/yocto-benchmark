@@ -21,7 +21,7 @@ $ git clone https://github.com/djboni/yocto-benchmark
 
 ## Step 2 - Install the dependencies
 
-Installer for Ubuntu:
+Installer for Ubuntu and Debian:
 
 ```console
 $ ./install
