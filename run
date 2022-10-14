@@ -38,9 +38,7 @@ do_hardware_info() {
 ########################################################################
 
 do_clean() {
-    # Clean only tmp and sstate-cache avoids having to download
-    # everything again when restarting
-    rm -fr poky/build/tmp/ poky/build/sstate-cache/
+    ./clean
 }
 
 ########################################################################
@@ -51,16 +49,11 @@ do_download() {
     START_DOWNLOAD=$(date_epoch)
     to_output echo "$(date_readable) Downloading..."
 
-    [ -d poky ] ||
-    git clone git://git.yoctoproject.org/poky --branch kirkstone
+    ./download
 
     cd poky
-    git reset --hard yocto-4.0.4-62-geaf8ce9d39
     to_output git describe --always
     source oe-init-build-env
-
-    bitbake core-image-minimal --runall=fetch
-    bitbake core-image-minimal -c populate_sdk --runall=fetch
 
     END_DOWNLOAD=$(date_epoch)
     TIME_DOWNLOAD=$((END_DOWNLOAD - START_DOWNLOAD))
