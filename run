@@ -25,11 +25,14 @@ OUTPUT_FILE="$PWD/results/$(date_epoch).txt"
 # Hardware and system information
 ########################################################################
 
+do_check_free_memory() {
+    to_output free -h
+}
+
 do_hardware_info() {
     to_output echo "$(uname -a | sed "s/$(uname -n)/hostname/")"
     to_output lsb_release -a
     to_output nproc
-    to_output free -h
     to_output sudo lshw -sanitize -notime
 }
 
@@ -102,6 +105,10 @@ do_builds() {
 }
 
 do_hardware_info
+do_check_free_memory
 do_clean
 do_download
 do_builds
+
+# Check free memory again (was swapping?)
+do_check_free_memory
