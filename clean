@@ -3,4 +3,7 @@ set -ex
 
 # Clean only tmp and sstate-cache avoids having to download
 # everything again when restarting
-rm -fr poky/build/tmp/ poky/build/sstate-cache/
+rm -vfr poky/build/tmp/ poky/build/sstate-cache/
+
+# Clean file system cache
+echo 3 | sudo tee /proc/sys/vm/drop_caches

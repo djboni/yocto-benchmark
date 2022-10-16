@@ -27,15 +27,10 @@ Installer for Ubuntu and Debian:
 $ ./install
 ```
 
-## Step 3 - Restart and run the benchmark
+## Step 3 - Run the benchmark
 
-Restart the computer before running the benchmark, specially if you are
-rerunning it for any reason. Restarting the computer will make sure
-there is the most RAM available for the build and, at the same time,
-there will be no previous file system caching at the start of the build.
-
-The building process will download around 5.5 GB of source code and it
-will use about 65 GB more to build the image and SDK.
+The building process will use around 70 GB of disk, downloading around
+5.5 GB of source code.
 
 ```console
 $ ./run
