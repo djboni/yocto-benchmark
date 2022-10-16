@@ -1,4 +1,6 @@
 #!/bin/bash
+#: Usage: ./run
+#: Usage: SKIP_SDK=1 ./run
 set -ex
 
 # Set language to English
@@ -81,14 +83,16 @@ do_builds() {
     # Build SDK
     ########################################################################
 
-    START_SDK=$(date_epoch)
-    to_output echo "$(date_readable) Building SDK..."
+    if [ -z $SKIP_SDK ]; then
+        START_SDK=$(date_epoch)
+        to_output echo "$(date_readable) Building SDK..."
 
-    bitbake core-image-minimal -c populate_sdk
+        bitbake core-image-minimal -c populate_sdk
 
-    END_SDK=$(date_epoch)
-    TIME_SDK=$((END_SDK - START_SDK))
-    to_output echo "$(date_readable) SDK build time: $TIME_SDK s"
+        END_SDK=$(date_epoch)
+        TIME_SDK=$((END_SDK - START_SDK))
+        to_output echo "$(date_readable) SDK build time: $TIME_SDK s"
+    fi
 
     ########################################################################
     # Total
