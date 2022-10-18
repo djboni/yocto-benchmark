@@ -1,4 +1,4 @@
-# Yocto Benchmark Server Test
+# Yocto Benchmark - Build Time Workflow
 
 Tested on a Debian 11 server.
 
@@ -25,13 +25,11 @@ $ sudo -iu user
 - Change directory
 - Install the dependencies (use user's password)
 - Run the benchmark
-- Clean
 
 ```console
 $ git clone https://github.com/djboni/yocto-benchmark
 $ cd yocto-benchmark
 $ ./install
-$ clear
 $ ./run
 ```
 

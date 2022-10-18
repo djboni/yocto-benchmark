@@ -1,0 +1,57 @@
+#!/bin/bash
+set -ex
+
+# Set language to English
+export LC_ALL=C
+export LANG=C
+export LANGUAGE=C
+
+# Create directory if it does not exist
+mkdir -p results
+
+to_output() {
+    {
+        "$@"
+    } >>"$OUTPUT_FILE"
+}
+date_epoch() { date "+%s"; }
+
+DT=5
+OUTPUT_FILE="$PWD/results/$(date_epoch).txt"
+
+to_output echo "\
+perf = [
+% Time CPU_Idle Used_RAM Used_Swap"
+
+START=$(date_epoch)
+while :; do
+    TIME="$(( $(date_epoch) - $START ))"
+    CPU="$(mpstat $DT 1 | grep 'Average:' | awk '{print $12}')"
+    FREE="$(free)"
+    RAM="$(echo "$FREE" | grep 'Mem:' | awk '{print $3}')"
+    SWAP="$(echo "$FREE" | grep 'Swap:' | awk '{print $3}')"
+
+    to_output echo "$TIME $CPU $RAM $SWAP"
+done
+
+to_output echo "\
+];
+
+time = perf(:,1);
+cpu_idle = perf(:,2);
+ram = perf(:,3);
+swap = perf(:,4);
+
+figure(3),clf
+
+subplot(3,1,1)
+plot(time, 100-cpu_idle)
+grid on
+
+subplot(3,1,2)
+plot(time, ram/1024**2)
+grid on
+
+subplot(3,1,3)
+plot(time, swap/1024**2)
+grid on"
