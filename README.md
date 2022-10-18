@@ -62,9 +62,9 @@ $ ./clean
 
 ## Cores and RAM
 
-![Build time vs Cores-GHz and RAM - 3D](images/figure1.svg)
+![Build time vs Cores-GHz and RAM - 3D](images/build-time-1.svg)
 
-![Build time vs Cores-GHz and RAM - 2D](images/figure2.svg)
+![Build time vs Cores-GHz and RAM - 2D](images/build-time-2.svg)
 
 | Machine | Cores | RAM GB | SSD/HD | Time     | Description                                                          |
 | ------- | ----- | ------ | ------ | -------- | -------------------------------------------------------------------- |

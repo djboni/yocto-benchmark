@@ -80,7 +80,7 @@ grid on
 
 hold off
 
-print images/figure1.svg
+print images/build-time-1.svg
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Figure 2.a
@@ -145,7 +145,7 @@ grid on
 
 hold off
 
-print images/figure2.svg
+print images/build-time-2.svg
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Equations
