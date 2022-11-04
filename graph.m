@@ -3,27 +3,27 @@
 clear
 
 data = [
-%                             HD
-%                      Total  SSD  Avail. Used
-%   Machine Cores GHz  RAM_GB NVMe RAM_GB Swap_GB Image_s SDK_s
-    1       4     3.0  16     0    10     0       14315   6784
-    2       4     2.0  16     1    14     0       15404   10638
-    3.1     4     2.2  8      1    7.2    0       15133   10079
-    4.1     4     1.6  8      0    7.3    0       14631   9926
-    5.1     6     1.9  32     1    30     0       6598    4675
-    1001    16    2.0  64     2    61     0       2194    1620
-    1002    8     2.0  64     2    62     0       3668    2691
-    1003    16    2.0  32     2    30     0       1950    1561
-    1004    8     2.0  32     2    30     0       3539    2481
-    1005    4     2.0  32     2    30     0       6507    4483
-    1006    8     2.0  16     2    15     0       3576    2522
-    1007    4     2.0  8      2    7.3    0       6139    4389
-    1008    2     2.0  16     2    15     0       12573   8367
-    1009    1     2.0  8      2    7.3    0       24870   16095
-    1010    12    4.0  32     1    30     0       2973    2116
-    1011    8     3.8  32     1    30     0       4329    3006
-    1012    16    3.7  128    2    124    0       2214    1602
-    1013    16    3.2  128    2    124    0       2471    1824
+%                             0_HD
+%                      Total  1_SSD  Avail. Used
+%   Machine Cores GHz  RAM_GB 2_NVMe RAM_GB Swap_GB Image_s SDK_s
+    1       4     3.0  16     0      10     0       14315   6784
+    2       4     2.0  16     1      14     0       15404   10638
+    3.1     4     2.2  8      1      7.2    0       15133   10079
+    4.1     4     1.6  8      0      7.3    0       14631   9926
+    5.1     6     1.9  32     1      30     0       6598    4675
+    1001    16    2.0  64     2      61     0       2194    1620
+    1002    8     2.0  64     2      62     0       3668    2691
+    1003    16    2.0  32     2      30     0       1950    1561
+    1004    8     2.0  32     2      30     0       3539    2481
+    1005    4     2.0  32     2      30     0       6507    4483
+    1006    8     2.0  16     2      15     0       3576    2522
+    1007    4     2.0  8      2      7.3    0       6139    4389
+    1008    2     2.0  16     2      15     0       12573   8367
+    1009    1     2.0  8      2      7.3    0       24870   16095
+    1010    12    4.0  32     1      30     0       2973    2116
+    1011    8     3.8  32     1      30     0       4329    3006
+    1012    16    3.7  128    2      124    0       2214    1602
+    1013    16    3.2  128    2      124    0       2471    1824
 ];
 
 machine = data(:,1);
@@ -36,11 +36,42 @@ used_swap = data(:,7);
 time_image = data(:,8) / 3600;
 time_sdk = data(:,9) / 3600;
 
-core_ghz = cores .* 1;
+cores = cores;
 ram = total_ram;
 time = time_image + time_sdk;
 
 hm = @(x)([floor(x) round((x-floor(x))*60)]);
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Best fit for y = A/x + B
+% Virtual Server, AMD EPYC-Rome Processor @ 2 GHz
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+data_BF = [
+%                             0_HD
+%                      Total  1_SSD  Avail. Used
+%   Machine Cores GHz  RAM_GB 2_NVMe RAM_GB Swap_GB Image_s SDK_s
+    1001    16    2.0  64     2      61     0       2194    1620
+    1002    8     2.0  64     2      62     0       3668    2691
+    1003    16    2.0  32     2      30     0       1950    1561
+    1004    8     2.0  32     2      30     0       3539    2481
+    1005    4     2.0  32     2      30     0       6507    4483
+    1006    8     2.0  16     2      15     0       3576    2522
+    1007    4     2.0  8      2      7.3    0       6139    4389
+    1008    2     2.0  16     2      15     0       12573   8367
+    1009    1     2.0  8      2      7.3    0       24870   16095
+];
+
+time_BF = ( data_BF(:,8) + data_BF(:,9) ) / 3600;
+cores_BF = data_BF(:,2);
+
+Y = time_BF;
+X = [1./cores_BF ones(length(cores_BF), 1)];
+
+% Least squares
+W = inv(X' * X) * X' * Y;
+A = W(1)
+B = W(2)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Figure 1
@@ -49,7 +80,7 @@ hm = @(x)([floor(x) round((x-floor(x))*60)]);
 figure(1),clf
 hold on
 
-stem3(core_ghz, ram, time, 'o')
+stem3(cores, ram, time, 'o')
 xmin = xlim()(1);
 xmax = xlim()(2);
 ymin = ylim()(1);
@@ -80,20 +111,18 @@ figure(2),clf
 subplot(2,1,1)
 hold on
 
-stem(core_ghz, time, 'o')
+stem(cores, time, 'o')
 xmin = xlim()(1);
 xmax = xlim()(2);
 
 % Equation
-A = 12;
-B = 0.0;
 x = xmin:xmax;
 y = A ./ x + B;
 plot(x, y, '-')
 
 % No negative build time
 a = axis(); a(3) = 0; a(4) = ceil(max(time)); axis(a)
-eq_2a = sprintf('Line: y = %.3g / x %+.3g', [A abs(B)])
+eq_2a = sprintf('Line: y = %.2g / x %+.2g', [A abs(B)])
 title(eq_2a)
 xlabel('Cores')
 ylabel('Build time [h]')
