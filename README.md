@@ -54,17 +54,37 @@ Clean the build to save disk space.
 $ ./clean
 ```
 
-## References
-
-- [Yocto Project Quick Build](https://docs.yoctoproject.org/brief-yoctoprojectqs/index.html)
-
 # Results
+
+Taking into account only the samples of
+"Virtual Server, AMD EPYC-Rome Processor @ 2 GHz",
+which was tested with 1, 2, 4, 8, and 16 cores,
+one can suggest that the samples follow an equation
+
+$$ y = A / x + B $$
+
+where `y` is the _build time_ and `x` is the _number of cores_ available.
+The constants `A` and `B` reflect on the "processing" (compiling) and
+the "IO" (reading and writing to disk), respectively.
+
+Considering the same samples, there were tests with the same number of
+cores but different RAM size. There was a very small difference
+unexpectedly in favor of the smaller RAM. It is expected the bigger
+RAM to be faster, caching more files. (Maybe the NVMe disks are as
+fast as RAM?)
+
+From my perspective there are a few main takeaways:
+
+- Have enough RAM to avoid swapping and being out of memory.
+- Have fast enough disk (reduce `B`).
+- Have more processing cores (reduce `A`).
+- More RAM may help with caching the disk.
 
 ## Cores and RAM
 
-![Build time vs Cores-GHz and RAM - 3D](images/build-time-1.svg)
-
 ![Build time vs Cores-GHz and RAM - 2D](images/build-time-2.svg)
+
+![Build time vs Cores-GHz and RAM - 3D](images/build-time-1.svg)
 
 | Machine | Cores | RAM GB | SSD/HD | Time     | Description                                                          |
 | ------- | ----- | ------ | ------ | -------- | -------------------------------------------------------------------- |
@@ -129,3 +149,7 @@ Notes:
   memory at the same time.
 
 - (1) Four of the eight builds were stopped due to low memory.
+
+# References
+
+- [Yocto Project Quick Build](https://docs.yoctoproject.org/brief-yoctoprojectqs/index.html)

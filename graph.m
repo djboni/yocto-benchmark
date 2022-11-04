@@ -1,5 +1,7 @@
 #!/usr/bin/env octave-cli
 
+clear
+
 data = [
 %                             HD
 %                      Total  SSD  Avail. Used
@@ -54,27 +56,13 @@ ymin = ylim()(1);
 ymax = ylim()(2);
 nticks = min(length(xticks()),length(yticks()));
 
-% Best plane fit to the points
-% https://www.mathworks.com/matlabcentral/answers/448708-plane-fitting-a-3d-scatter-plot
-x = core_ghz;
-y = ram;
-z = time;
-B = [x(:) y(:) ones(size(x(:)))] \ z(:);
-xv = linspace(xmin, xmax, nticks)';
-yv = linspace(ymin, ymax, nticks)';
-[X,Y] = meshgrid(xv, yv);
-Z = reshape([X(:), Y(:), ones(size(X(:)))] * B, numel(xv), []);
-mesh(X, Y, Z, 'FaceAlpha', 0.4)
-
 % No negative build time
 axis([axis() 0 ceil(max(time))])
 
-eq_1 = sprintf('Z =  %+.3g * X  %+.3g * Y  %+.3g', B);
-title(eq_1)
 xlabel('Cores')
 ylabel('RAM [GB]')
 zlabel('Build time [h]')
-az = 180 - 50;
+az = 180 - 60;
 el = 30;
 view(az, el)
 grid on
@@ -96,19 +84,16 @@ stem(core_ghz, time, 'o')
 xmin = xlim()(1);
 xmax = xlim()(2);
 
-% Best line fit to the points
-% https://www.mathworks.com/matlabcentral/answers/377139-how-to-plot-best-fit-line
-x = core_ghz;
-y = time;
-B = polyfit(x, y, 1);
-X = linspace(xmin, xmax, 2);
-Z = polyval(B , X);
-plot(X, Z, 'r-');
+% Equation
+A = 12;
+B = 0.0;
+x = xmin:xmax;
+y = A ./ x + B;
+plot(x, y, '-')
 
 % No negative build time
 a = axis(); a(3) = 0; a(4) = ceil(max(time)); axis(a)
-
-eq_2a = sprintf('Z =  %+.3g * X  %+.3g', B);
+eq_2a = sprintf('Line: y = %.3g / x %+.3g', [A abs(B)])
 title(eq_2a)
 xlabel('Cores')
 ylabel('Build time [h]')
@@ -127,19 +112,9 @@ stem(ram, time, 'o')
 xmin = xlim()(1);
 xmax = xlim()(2);
 
-% Best line fit to the points
-x = ram;
-y = time;
-B = polyfit(x, y, 1);
-Y = linspace(xmin, xmax, 2);
-Z = polyval(B , Y);
-plot(Y, Z, 'r-');
-
 % No negative build time
 a = axis(); a(3) = 0; a(4) = ceil(max(time)); axis(a)
 
-eq_2b = sprintf(sprintf('Z =  %+.3g * Y  %+.3g', B));
-title(eq_2b)
 xlabel('RAM [GB]')
 ylabel('Build time [h]')
 grid on
@@ -147,11 +122,3 @@ grid on
 hold off
 
 print images/build-time-2.svg
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Equations
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-printf([eq_1 '\n'])
-printf([eq_2a '\n'])
-printf([eq_2b '\n'])
