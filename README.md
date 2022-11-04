@@ -84,7 +84,7 @@ $ ./clean
 | 1       | 4     | 16     | HD     | 5h52     | Desktop, Intel(R) Core(TM) i5-3330 CPU @ 3.00GHz                     |
 | 4.1     | 4     | 8      | SSD    | 6h49     | Laptop Dell Latitude E5440, Intel(R) Core(TM) i5-4200U CPU @ 1.60GHz |
 | 3.1     | 4     | 8      | SSD    | 7h00     | Laptop Dell Vostro 5480, Intel(R) Core(TM) i5-5200U CPU @ 2.20GHz    |
-| 2       | 4     | 16     | SSD    | 7h14     | Laptop Dell Inspiron 5140, Intel(R) Core(TM) i7-4510U CPU @ 2.00GHz  |
+| 2       | 4     | 16     | SSD    | 7h14     | Laptop Dell Inspiron 5547, Intel(R) Core(TM) i7-4510U CPU @ 2.00GHz  |
 | 1009    | 1     | 8      | NVMe   | 11h23    | Virtual Server, AMD EPYC-Rome Processor @ 2 GHz                      |
 
 Notes:
