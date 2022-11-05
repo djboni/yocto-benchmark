@@ -57,9 +57,10 @@ $ ./clean
 # Results
 
 Taking into account only the samples of
-"Virtual Server, AMD EPYC-Rome Processor @ 2 GHz",
-which was tested with 1, 2, 4, 8, and 16 cores,
-one can suggest that the samples follow an equation
+"Virtual Server, AMD EPYC-Rome Processor @ 2 GHz" (machines 1001 - 1009),
+which were tested with 1, 2, 4, 8, and 16 cores, a couple RAM sizes each
+and the same NVMe disk technology, one can suggest that the samples
+follow the equation
 
 $$ y = A / x + B $$
 
@@ -67,11 +68,14 @@ where `y` is the _build time_ and `x` is the _number of cores_ available.
 The constants `A` and `B` reflect on the "processing" (compiling) and
 the "IO" (reading and writing to disk), respectively.
 
-Considering the same samples, there were tests with the same number of
-cores but different RAM size. There was a very small difference
-unexpectedly in favor of the smaller RAM. It is expected the bigger
-RAM to be faster, caching more files. (Maybe the NVMe disks are as
+It is expected the bigger RAM to be faster, allowing the OS to cache
+more files. However, the tests with the same number of
+cores but different RAM size, revealed a very small difference
+unexpectedly in favor of the smaller RAM. (Maybe the NVMe disks are as
 fast as RAM?)
+
+Tests with (slow) HDs would allow an easier observation of the effects
+of RAM caching.
 
 From my perspective there are a few main takeaways:
 
