@@ -90,6 +90,9 @@ cores_all = [cores_misc; cores_AMD_EPYC; cores_ARM_Neoverse];
 ram_all   = [ram_misc;   ram_AMD_EPYC;   ram_ARM_Neoverse];
 time_all  = [time_misc;  time_AMD_EPYC;  time_ARM_Neoverse];
 
+cores_ticks = unique(cores_all);
+ram_ticks = unique(ram_all);
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Figure 1
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -102,7 +105,9 @@ xmin = xlim()(1);
 xmax = xlim()(2);
 ymin = ylim()(1);
 ymax = ylim()(2);
-nticks = min(length(xticks()),length(yticks()));
+
+xticks(cores_ticks)
+yticks(ram_ticks)
 
 % No negative build time
 axis([axis() 0 ceil(max(time_all))])
@@ -132,6 +137,8 @@ stem(cores_all, time_all, 'o')
 xmin = xlim()(1);
 xmax = xlim()(2);
 
+xticks(cores_ticks)
+
 % Equation
 x = (xmin:xmax)';
 y1 = A1 ./ x + B1;
@@ -140,6 +147,7 @@ plot(x, [y1, y2], '-')
 
 % No negative build time
 a = axis(); a(3) = 0; a(4) = ceil(max(time_all)); axis(a)
+
 eq_2a1 = sprintf('y_1 = %.3g/x% +.2g', [A1 B1])
 eq_2a2 = sprintf('y_2 = %.3g/x% +.2g', [A2 B2])
 title(['Lines: ', eq_2a1, ' --- ', eq_2a2])
@@ -164,6 +172,8 @@ hold on
 stem(ram_all, time_all, 'o')
 xmin = xlim()(1);
 xmax = xlim()(2);
+
+xticks(ram_ticks)
 
 % No negative build time
 a = axis(); a(3) = 0; a(4) = ceil(max(time_all)); axis(a)
