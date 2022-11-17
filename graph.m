@@ -2,7 +2,11 @@
 
 clear
 
-data = [
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Misc hardware
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+data_misc = [
 %                             0_HD
 %                      Total  1_SSD  Avail. Used
 %   Machine Cores GHz  RAM_GB 2_NVMe RAM_GB Swap_GB Image_s SDK_s
@@ -11,45 +15,22 @@ data = [
     3.1     4     2.2  8      1      7.2    0       15133   10079
     4.1     4     1.6  8      0      7.3    0       14631   9926
     5.1     6     1.9  32     1      30     0       6598    4675
-    1001    16    2.0  64     2      61     0       2194    1620
-    1002    8     2.0  64     2      62     0       3668    2691
-    1003    16    2.0  32     2      30     0       1950    1561
-    1004    8     2.0  32     2      30     0       3539    2481
-    1005    4     2.0  32     2      30     0       6507    4483
-    1006    8     2.0  16     2      15     0       3576    2522
-    1007    4     2.0  8      2      7.3    0       6139    4389
-    1008    2     2.0  16     2      15     0       12573   8367
-    1009    1     2.0  8      2      7.3    0       24870   16095
     1010    12    4.0  32     1      30     0       2973    2116
     1011    8     3.8  32     1      30     0       4329    3006
     1012    16    3.7  128    2      124    0       2214    1602
     1013    16    3.2  128    2      124    0       2471    1824
-    1101    16    2.0  96     -1     92     0       2370    1926
-    1102     8    2.0  96     -1     93     0       4077    2945
 ];
 
-machine = data(:,1);
-cores = data(:,2);
-ghz = data(:,3);
-total_ram = data(:,4);
-ssd = data(:,5);
-avail_ram = data(:,6);
-used_swap = data(:,7);
-time_image = data(:,8) / 3600;
-time_sdk = data(:,9) / 3600;
-
-cores = cores;
-ram = total_ram;
-time = time_image + time_sdk;
-
-hm = @(x)([floor(x) round((x-floor(x))*60)]);
+cores_misc = data_misc(:,2);
+ram_misc = data_misc(:,4);
+time_misc = (data_misc(:,8) + data_misc(:,9)) / 3600;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Best fit for y = A/x + B
 % Virtual Server, AMD EPYC-Rome Processor @ 2 GHz
+% Best fit for y = A/x + B
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-data_BF = [
+data_AMD_EPYC = [
 %                             0_HD
 %                      Total  1_SSD  Avail. Used
 %   Machine Cores GHz  RAM_GB 2_NVMe RAM_GB Swap_GB Image_s SDK_s
@@ -64,16 +45,50 @@ data_BF = [
     1009    1     2.0  8      2      7.3    0       24870   16095
 ];
 
-time_BF = ( data_BF(:,8) + data_BF(:,9) ) / 3600;
-cores_BF = data_BF(:,2);
+cores_AMD_EPYC = data_AMD_EPYC(:,2);
+ram_AMD_EPYC = data_AMD_EPYC(:,4);
+time_AMD_EPYC = (data_AMD_EPYC(:,8) + data_AMD_EPYC(:,9)) / 3600;
 
-Y = time_BF;
-X = [1./cores_BF ones(length(cores_BF), 1)];
+Y = time_AMD_EPYC;
+X = [1./cores_AMD_EPYC ones(length(cores_AMD_EPYC), 1)];
 
 % Least squares
 W = inv(X' * X) * X' * Y;
-A = W(1)
-B = W(2)
+A1 = W(1)
+B1 = W(2)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Virtual Server, ARM Neoverse-N1 @ 2GHz
+% Best fit for y = A/x + B
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+data_ARM_Neoverse = [
+%                             0_HD
+%                      Total  1_SSD  Avail. Used
+%   Machine Cores GHz  RAM_GB 2_NVMe RAM_GB Swap_GB Image_s SDK_s
+    1101    16    2.0  96     -1     92     0       2370    1926
+    1102     8    2.0  96     -1     93     0       4077    2945
+];
+
+cores_ARM_Neoverse = data_ARM_Neoverse(:,2);
+ram_ARM_Neoverse = data_ARM_Neoverse(:,4);
+time_ARM_Neoverse = (data_ARM_Neoverse(:,8) + data_ARM_Neoverse(:,9)) / 3600;
+
+Y = time_ARM_Neoverse;
+X = [1./cores_ARM_Neoverse ones(length(cores_ARM_Neoverse), 1)];
+
+% Least squares
+W = inv(X' * X) * X' * Y;
+A2 = W(1)
+B2 = W(2)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Agregate all data
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+cores_all = [cores_misc; cores_AMD_EPYC; cores_ARM_Neoverse];
+ram_all   = [ram_misc;   ram_AMD_EPYC;   ram_ARM_Neoverse];
+time_all  = [time_misc;  time_AMD_EPYC;  time_ARM_Neoverse];
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Figure 1
@@ -82,7 +97,7 @@ B = W(2)
 figure(1),clf
 hold on
 
-stem3(cores, ram, time, 'o')
+stem3(cores_all, ram_all, time_all, 'o')
 xmin = xlim()(1);
 xmax = xlim()(2);
 ymin = ylim()(1);
@@ -90,7 +105,7 @@ ymax = ylim()(2);
 nticks = min(length(xticks()),length(yticks()));
 
 % No negative build time
-axis([axis() 0 ceil(max(time))])
+axis([axis() 0 ceil(max(time_all))])
 
 xlabel('Cores')
 ylabel('RAM [GB]')
@@ -113,21 +128,28 @@ figure(2),clf
 subplot(2,1,1)
 hold on
 
-stem(cores, time, 'o')
+stem(cores_all, time_all, 'o')
 xmin = xlim()(1);
 xmax = xlim()(2);
 
 % Equation
-x = xmin:xmax;
-y = A ./ x + B;
-plot(x, y, '-')
+x = (xmin:xmax)';
+y1 = A1 ./ x + B1;
+y2 = A2 ./ x + B2;
+plot(x, [y1, y2], '-')
 
 % No negative build time
-a = axis(); a(3) = 0; a(4) = ceil(max(time)); axis(a)
-eq_2a = sprintf('Line: y = %.2g / x %+.2g', [A abs(B)])
-title(eq_2a)
+a = axis(); a(3) = 0; a(4) = ceil(max(time_all)); axis(a)
+eq_2a1 = sprintf('y_1 = %.3g/x% +.2g', [A1 B1])
+eq_2a2 = sprintf('y_2 = %.3g/x% +.2g', [A2 B2])
+title(['Lines: ', eq_2a1, ' --- ', eq_2a2])
 xlabel('Cores')
 ylabel('Build time [h]')
+legend({
+    'Samples',
+    'y_1 AMD EPYC',
+    'y_2 ARM Neoverse',
+    })
 grid on
 
 hold off
@@ -139,12 +161,12 @@ hold off
 subplot(2,1,2)
 hold on
 
-stem(ram, time, 'o')
+stem(ram_all, time_all, 'o')
 xmin = xlim()(1);
 xmax = xlim()(2);
 
 % No negative build time
-a = axis(); a(3) = 0; a(4) = ceil(max(time)); axis(a)
+a = axis(); a(3) = 0; a(4) = ceil(max(time_all)); axis(a)
 
 xlabel('RAM [GB]')
 ylabel('Build time [h]')
