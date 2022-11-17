@@ -101,20 +101,39 @@ figure(1),clf
 hold on
 
 stem3(cores_all, ram_all, time_all, 'o')
+xticks(cores_ticks)
+yticks(ram_ticks)
+
 xmin = xlim()(1);
 xmax = xlim()(2);
 ymin = ylim()(1);
 ymax = ylim()(2);
 
-xticks(cores_ticks)
-yticks(ram_ticks)
+% Equation
+x = (xmin:xmax)';
+y1 = A1 ./ x + B1;
+y2 = A2 ./ x + B2;
+plot3(x, ymin*ones(1,length(x)), y1, '-')
+plot3(x, ymin*ones(1,length(x)), y2, '-')
 
 % No negative build time
-axis([axis() 0 ceil(max(time_all))])
+a = [axis() 0 ceil(max(time_all))];
+a(3) = ymin; % Fix start of y plane on the plotted lines
+axis(a)
 
+eq_2a1 = sprintf('y_1 = %.3g/x% +.2g', [A1 B1])
+eq_2a2 = sprintf('y_2 = %.3g/x% +.2g', [A2 B2])
+graph_title = ['Lines: ', eq_2a1, ' - ', eq_2a2];
+
+title(graph_title)
 xlabel('Cores')
 ylabel('RAM [GB]')
 zlabel('Build time [h]')
+legend({
+    'Samples',
+    'y_1 AMD EPYC',
+    'y_2 ARM Neoverse',
+    })
 az = 180 - 57.5;
 el = 30;
 view(az, el)
@@ -134,9 +153,6 @@ subplot(2,1,1)
 hold on
 
 stem(cores_all, time_all, 'o')
-xmin = xlim()(1);
-xmax = xlim()(2);
-
 xticks(cores_ticks)
 
 % Equation
@@ -148,9 +164,7 @@ plot(x, [y1, y2], '-')
 % No negative build time
 a = axis(); a(3) = 0; a(4) = ceil(max(time_all)); axis(a)
 
-eq_2a1 = sprintf('y_1 = %.3g/x% +.2g', [A1 B1])
-eq_2a2 = sprintf('y_2 = %.3g/x% +.2g', [A2 B2])
-title(['Lines: ', eq_2a1, ' --- ', eq_2a2])
+title(graph_title)
 xlabel('Cores')
 ylabel('Build time [h]')
 legend({
@@ -170,9 +184,6 @@ subplot(2,1,2)
 hold on
 
 stem(ram_all, time_all, 'o')
-xmin = xlim()(1);
-xmax = xlim()(2);
-
 xticks(ram_ticks)
 
 % No negative build time
