@@ -129,7 +129,7 @@ Notes:
 | 1003.u2 | 16    | 32     | 2      | 1h03     | 15.7 + 0.2    | 5.8  | Virtual Server, AMD EPYC-Rome Processor @ 2 GHz |
 | 1003.u4 | 16    | 32     | 4      | 2h05     | 25.0 + 0.8    | 11.4 | Virtual Server, AMD EPYC-Rome Processor @ 2 GHz |
 | 1003.u6 | 16    | 32     | 6      | 3h17     | 30.4 + 7.8    | 17.5 | Virtual Server, AMD EPYC-Rome Processor @ 2 GHz |
-| 1003.u8 | 16    | 32     | 8      | 4h43 (1) | 30.7 + 7.8    | 22.0 | Virtual Server, AMD EPYC-Rome Processor @ 2 GHz |
+| 1003.u8 | 16    | 32     | 8      | 4h43 (2) | 30.7 + 7.8    | 22.0 | Virtual Server, AMD EPYC-Rome Processor @ 2 GHz |
 | 1006.u1 | 8     | 16     | 1      | 1h02     | 7.0 + 0.0     | 2.0  | Virtual Server, AMD EPYC-Rome Processor @ 2 GHz |
 | 1007.u1 | 4     | 8      | 1      | 1h42     | 3.9 + 0.1     | 1.3  | Virtual Server, AMD EPYC-Rome Processor @ 2 GHz |
 | 1008.u1 | 2     | 16     | 1      | 3h20     | 2.8 + 0.0     | 0.9  | Virtual Server, AMD EPYC-Rome Processor @ 2 GHz |
@@ -152,7 +152,7 @@ Notes:
   getting the worst case scenario, where all builds need the most
   memory at the same time.
 
-- (1) Four of the eight builds were stopped due to low memory.
+- (2) Four of the eight builds were stopped due to low memory.
 
 # References
 
