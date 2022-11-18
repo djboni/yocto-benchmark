@@ -118,7 +118,9 @@ plot3(x, ymin*ones(1,length(x)), y2, '-')
 
 % No negative build time
 a = [axis() 0 ceil(max(time_all))];
+a(2) = max(cores_ticks);
 a(3) = ymin; % Fix start of y plane on the plotted lines
+a(4) = max(ram_ticks);
 axis(a)
 
 eq_2a1 = sprintf('y_1 = %.3g/x% +.2g', [A1 B1])
@@ -162,7 +164,11 @@ y2 = A2 ./ x + B2;
 plot(x, [y1, y2], '-')
 
 % No negative build time
-a = axis(); a(3) = 0; a(4) = ceil(max(time_all)); axis(a)
+a = axis();
+a(2) = max(cores_ticks);
+a(3) = 0;
+a(4) = ceil(max(time_all));
+axis(a)
 
 title(graph_title)
 xlabel('Cores')
@@ -187,7 +193,11 @@ stem(ram_all, time_all, 'x')
 xticks(ram_ticks)
 
 % No negative build time
-a = axis(); a(3) = 0; a(4) = ceil(max(time_all)); axis(a)
+a = axis();
+a(2) = max(ram_ticks);
+a(3) = 0;
+a(4) = ceil(max(time_all));
+axis(a)
 
 xlabel('RAM [GB]')
 ylabel('Build time [h]')
