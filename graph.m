@@ -100,7 +100,7 @@ ram_ticks = unique(ram_all);
 figure(1),clf
 hold on
 
-stem3(cores_all, ram_all, time_all, 'o')
+stem3(cores_all, ram_all, time_all, 'x')
 xticks(cores_ticks)
 yticks(ram_ticks)
 
@@ -152,7 +152,7 @@ figure(2),clf
 subplot(2,1,1)
 hold on
 
-stem(cores_all, time_all, 'o')
+stem(cores_all, time_all, 'x')
 xticks(cores_ticks)
 
 % Equation
@@ -183,7 +183,7 @@ hold off
 subplot(2,1,2)
 hold on
 
-stem(ram_all, time_all, 'o')
+stem(ram_all, time_all, 'x')
 xticks(ram_ticks)
 
 % No negative build time
