@@ -97,21 +97,31 @@ From my perspective there are a few main takeaways:
 | 1012    | 16    | 128    | NVMe   | 1h04     | Server, Intel(R) Xeon(R) E-2288G CPU @ 3.70GHz                       |
 | 1013    | 16    | 128    | NVMe   | 1h12     | Server, Intel(R) Xeon(R) E-2388G CPU @ 3.20GHz                       |
 | 1101    | 16    | 96     | ?      | 1h12     | Virtual Server, ARM Neoverse-N1 @ 2GHz                               |
+| 1110    | 16    | 16     | ?      | 1h07 (1) | Virtual Server, ARM Neoverse-N1 @ 2GHz                               |
 | 1010    | 12    | 32     | SSD    | 1h25     | Server, Intel(R) Xeon(R) E-2286G CPU @ 4.00GHz                       |
 | 1002    | 8     | 64     | NVMe   | 1h46     | Virtual Server, AMD EPYC-Rome Processor @ 2 GHz                      |
 | 1004    | 8     | 32     | NVMe   | 1h40 (1) | Virtual Server, AMD EPYC-Rome Processor @ 2 GHz                      |
 | 1006    | 8     | 16     | NVMe   | 1h42     | Virtual Server, AMD EPYC-Rome Processor @ 2 GHz                      |
 | 1102    | 8     | 96     | ?      | 1h57     | Virtual Server, ARM Neoverse-N1 @ 2GHz                               |
+| 1109    | 8     | 8      | ?      | 1h58     | Virtual Server, ARM Neoverse-N1 @ 2GHz                               |
 | 1011    | 8     | 32     | SSD    | 2h02     | Server, Intel(R) Xeon(R) CPU E3-1270 v6 @ 3.80GHz                    |
 | 1005    | 4     | 32     | NVMe   | 3h03     | Virtual Server, AMD EPYC-Rome Processor @ 2 GHz                      |
 | 1007    | 4     | 8      | NVMe   | 2h55 (1) | Virtual Server, AMD EPYC-Rome Processor @ 2 GHz                      |
 | 5.1     | 6     | 32     | SSD    | 3h08     | Server, Intel(R) Xeon(R) Bronze 3204 CPU @ 1.90GHz                   |
+| 1103    | 4     | 96     | ?      | 3h34     | Virtual Server, ARM Neoverse-N1 @ 2GHz                               |
+| 1108    | 4     | 8      | ?      | 3h41     | Virtual Server, ARM Neoverse-N1 @ 2GHz                               |
+| 1111    | 4     | 32     | ?      | 3h54     | Virtual Server, Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz         |
 | 1008    | 2     | 16     | NVMe   | 5h49     | Virtual Server, AMD EPYC-Rome Processor @ 2 GHz                      |
 | 1       | 4     | 16     | HD     | 5h52     | Desktop, Intel(R) Core(TM) i5-3330 CPU @ 3.00GHz                     |
+| 1104    | 2     | 96     | ?      | 6h48     | Virtual Server, ARM Neoverse-N1 @ 2GHz                               |
+| 1107    | 2     | 8      | ?      | 6h56     | Virtual Server, ARM Neoverse-N1 @ 2GHz                               |
 | 4.1     | 4     | 8      | SSD    | 6h49     | Laptop Dell Latitude E5440, Intel(R) Core(TM) i5-4200U CPU @ 1.60GHz |
 | 3.1     | 4     | 8      | SSD    | 7h00     | Laptop Dell Vostro 5480, Intel(R) Core(TM) i5-5200U CPU @ 2.20GHz    |
 | 2       | 4     | 16     | SSD    | 7h14     | Laptop Dell Inspiron 5547, Intel(R) Core(TM) i7-4510U CPU @ 2.00GHz  |
+| 1112    | 2     | 32     | ?      | 7h33     | Virtual Server, Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz         |
 | 1009    | 1     | 8      | NVMe   | 11h23    | Virtual Server, AMD EPYC-Rome Processor @ 2 GHz                      |
+| 1105    | 1     | 64     | ?      | 13h10    | Virtual Server, ARM Neoverse-N1 @ 2GHz                               |
+| 1106    | 1     | 8      | ?      | 13h57    | Virtual Server, ARM Neoverse-N1 @ 2GHz                               |
 
 Notes:
 

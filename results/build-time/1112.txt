@@ -1,0 +1,380 @@
++ echo Linux hostname 5.15.0-1021-oracle #27-Ubuntu SMP Fri Oct 14 20:04:26 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux
+Linux hostname 5.15.0-1021-oracle #27-Ubuntu SMP Fri Oct 14 20:04:26 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux
+
++ lsb_release -a
+Distributor ID:	Ubuntu
+Description:	Ubuntu 22.04.1 LTS
+Release:	22.04
+Codename:	jammy
+
++ nproc
+2
+
++ sudo lscpu
+Architecture:                    x86_64
+CPU op-mode(s):                  32-bit, 64-bit
+Address sizes:                   40 bits physical, 57 bits virtual
+Byte Order:                      Little Endian
+CPU(s):                          2
+On-line CPU(s) list:             0,1
+Vendor ID:                       GenuineIntel
+Model name:                      Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz
+CPU family:                      6
+Model:                           106
+Thread(s) per core:              2
+Core(s) per socket:              1
+Socket(s):                       1
+Stepping:                        6
+BogoMIPS:                        5187.98
+Flags:                           fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault invpcid_single ssbd ibrs ibpb stibp ibrs_enhanced tpr_shadow vnmi flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves wbnoinvd arat avx512vbmi umip pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq la57 rdpid md_clear arch_capabilities
+Virtualization:                  VT-x
+Hypervisor vendor:               KVM
+Virtualization type:             full
+L1d cache:                       64 KiB (2 instances)
+L1i cache:                       64 KiB (2 instances)
+L2 cache:                        4 MiB (1 instance)
+L3 cache:                        16 MiB (1 instance)
+NUMA node(s):                    1
+NUMA node0 CPU(s):               0,1
+Vulnerability Itlb multihit:     Not affected
+Vulnerability L1tf:              Not affected
+Vulnerability Mds:               Not affected
+Vulnerability Meltdown:          Not affected
+Vulnerability Mmio stale data:   Vulnerable: Clear CPU buffers attempted, no microcode; SMT Host state unknown
+Vulnerability Retbleed:          Not affected
+Vulnerability Spec store bypass: Mitigation; Speculative Store Bypass disabled via prctl and seccomp
+Vulnerability Spectre v1:        Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:        Mitigation; Enhanced IBRS, IBPB conditional, RSB filling, PBRSB-eIBRS SW sequence
+Vulnerability Srbds:             Not affected
+Vulnerability Tsx async abort:   Not affected
+
++ sudo lshw -sanitize -notime
+computer
+    description: Computer
+    product: Standard PC (i440FX + PIIX, 1996)
+    vendor: QEMU
+    version: pc-i440fx-4.2
+    width: 64 bits
+    capabilities: smbios-2.8 dmi-2.8 smp vsyscall32
+    configuration: boot=normal uuid=[REMOVED]
+  *-core
+       description: Motherboard
+       physical id: 0
+     *-cpu
+          description: CPU
+          product: Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz
+          vendor: Intel Corp.
+          physical id: 400
+          bus info: cpu@0
+          version: 6.106.6
+          slot: CPU 0
+          size: 2GHz
+          capacity: 2GHz
+          width: 64 bits
+          capabilities: fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp x86-64 constant_tsc arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault invpcid_single ssbd ibrs ibpb stibp ibrs_enhanced tpr_shadow vnmi flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves wbnoinvd arat avx512vbmi umip pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq la57 rdpid md_clear arch_capabilities
+          configuration: cores=1 enabledcores=1 microcode=1 threads=2
+     *-memory
+          description: System Memory
+          physical id: 1000
+          size: 32GiB
+          capabilities: ecc
+          configuration: errordetection=multi-bit-ecc
+        *-bank:0
+             description: DIMM RAM
+             vendor: QEMU
+             physical id: 0
+             slot: DIMM 0
+             size: 16GiB
+        *-bank:1
+             description: DIMM RAM
+             vendor: QEMU
+             physical id: 1
+             slot: DIMM 1
+             size: 16GiB
+     *-firmware
+          description: BIOS
+          vendor: EFI Development Kit II / OVMF
+          physical id: 0
+          version: 1.5.1
+          date: 06/16/2021
+          size: 96KiB
+          capabilities: uefi virtualmachine
+     *-pci
+          description: Host bridge
+          product: 440FX - 82441FX PMC [Natoma]
+          vendor: Intel Corporation
+          physical id: 100
+          bus info: pci@0000:00:00.0
+          version: 02
+          width: 32 bits
+          clock: 33MHz
+        *-isa
+             description: ISA bridge
+             product: 82371SB PIIX3 ISA [Natoma/Triton II]
+             vendor: Intel Corporation
+             physical id: 1
+             bus info: pci@0000:00:01.0
+             version: 00
+             width: 32 bits
+             clock: 33MHz
+             capabilities: isa bus_master
+             configuration: latency=0
+           *-pnp00:00
+                product: PnP device PNP0b00
+                physical id: 0
+                capabilities: pnp
+                configuration: driver=rtc_cmos
+           *-pnp00:01
+                product: PnP device PNP0303
+                physical id: 1
+                capabilities: pnp
+                configuration: driver=i8042 kbd
+           *-pnp00:02
+                product: PnP device PNP0f13
+                physical id: 2
+                capabilities: pnp
+                configuration: driver=i8042 aux
+           *-pnp00:03
+                product: PnP device PNP0700
+                physical id: 3
+                capabilities: pnp
+           *-pnp00:04
+                product: PnP device PNP0501
+                physical id: 4
+                capabilities: pnp
+                configuration: driver=serial
+        *-ide
+             description: IDE interface
+             product: 82371SB PIIX3 IDE [Natoma/Triton II]
+             vendor: Intel Corporation
+             physical id: 1.1
+             bus info: pci@0000:00:01.1
+             version: 00
+             width: 32 bits
+             clock: 33MHz
+             capabilities: ide isa_compat_mode bus_master
+             configuration: driver=ata_piix latency=0
+             resources: irq:0 ioport:1f0(size=8) ioport:3f6 ioport:170(size=8) ioport:376 ioport:c080(size=16)
+        *-usb
+             description: USB controller
+             product: 82371SB PIIX3 USB [Natoma/Triton II]
+             vendor: Intel Corporation
+             physical id: 1.2
+             bus info: pci@0000:00:01.2
+             version: 01
+             width: 32 bits
+             clock: 33MHz
+             capabilities: uhci bus_master
+             configuration: driver=uhci_hcd latency=0
+             resources: irq:11 ioport:c060(size=32)
+           *-usbhost
+                product: UHCI Host Controller
+                vendor: Linux 5.15.0-1021-oracle uhci_hcd
+                physical id: 1
+                bus info: usb@1
+                logical name: usb1
+                version: 5.15
+                capabilities: usb-1.10
+                configuration: driver=hub slots=2 speed=12Mbit/s
+              *-usb
+                   description: Human interface device
+                   product: QEMU QEMU USB Tablet
+                   vendor: QEMU
+                   physical id: 1
+                   bus info: usb@1:1
+                   logical name: input6
+                   logical name: /dev/input/event5
+                   logical name: /dev/input/mouse2
+                   version: 0.00
+                   serial: [REMOVED]
+                   capabilities: usb-2.00 usb
+                   configuration: driver=usbhid maxpower=100mA speed=12Mbit/s
+        *-bridge
+             description: Bridge
+             product: 82371AB/EB/MB PIIX4 ACPI
+             vendor: Intel Corporation
+             physical id: 1.3
+             bus info: pci@0000:00:01.3
+             version: 03
+             width: 32 bits
+             clock: 33MHz
+             capabilities: bridge bus_master
+             configuration: driver=piix4_smbus latency=0
+             resources: irq:9
+        *-display
+             description: VGA compatible controller
+             product: bochs-drmdrmfb
+             physical id: 2
+             bus info: pci@0000:00:02.0
+             logical name: /dev/fb0
+             version: 02
+             width: 32 bits
+             clock: 33MHz
+             capabilities: vga_controller bus_master rom fb
+             configuration: depth=32 driver=bochs-drm latency=0 resolution=1024,768
+             resources: irq:0 memory:c0000000-c0ffffff memory:c1012000-c1012fff memory:c0000-dffff
+        *-network
+             description: Ethernet controller
+             product: Virtio network device
+             vendor: Red Hat, Inc.
+             physical id: 3
+             bus info: pci@0000:00:03.0
+             logical name: /dev/fb0
+             version: 00
+             width: 64 bits
+             clock: 33MHz
+             capabilities: msix bus_master cap_list fb
+             configuration: depth=32 driver=virtio-pci latency=0 mode=1024x768 visual=truecolor xres=1024 yres=768
+             resources: iomemory:100-ff irq:10 ioport:c040(size=32) memory:c1011000-c1011fff memory:1000000000-1000003fff
+           *-virtio0
+                description: Ethernet interface
+                physical id: 0
+                bus info: virtio@0
+                logical name: ens3
+                serial: [REMOVED]
+                capabilities: ethernet physical
+                configuration: autonegotiation=off broadcast=yes driver=virtio_net driverversion=1.0.0 ip=[REMOVED] link=yes multicast=yes
+        *-scsi
+             description: SCSI storage controller
+             product: Virtio SCSI
+             vendor: Red Hat, Inc.
+             physical id: 4
+             bus info: pci@0000:00:04.0
+             version: 00
+             width: 64 bits
+             clock: 33MHz
+             capabilities: scsi msix bus_master cap_list
+             configuration: driver=virtio-pci latency=0
+             resources: iomemory:100-ff irq:11 ioport:c000(size=64) memory:c1010000-c1010fff memory:1000004000-1000007fff
+           *-virtio1
+                description: Virtual I/O device
+                physical id: 0
+                bus info: virtio@1
+                logical name: scsi2
+                configuration: driver=virtio_scsi
+              *-disk
+                   description: SCSI Disk
+                   product: BlockVolume
+                   vendor: ORACLE
+                   physical id: 0.0.1
+                   bus info: scsi@2:0.0.1
+                   logical name: /dev/sda
+                   version: 1.0
+                   size: 1TiB (1099GB)
+                   capabilities: gpt-1.00 partitioned partitioned:gpt
+                   configuration: ansiversion=6 guid=65b51f51-c98d-4241-a50b-c772c8263b82 logicalsectorsize=512 sectorsize=4096
+                 *-volume:0
+                      description: EXT4 volume
+                      vendor: Linux
+                      physical id: 1
+                      bus info: scsi@2:0.0.1,1
+                      logical name: /dev/sda1
+                      logical name: /
+                      version: 1.0
+                      serial: [REMOVED]
+                      size: 2960MiB
+                      capacity: 1023GiB
+                      capabilities: journaled extended_attributes large_files huge_files dir_nlink recover 64bit extents ext4 ext2 initialized
+                      configuration: created=2022-11-06 02:15:46 filesystem=ext4 label=cloudimg-rootfs lastmountpoint=/ mount.fstype=ext4 mount.options=rw,relatime,discard,errors=remount-ro state=mounted
+                 *-volume:1
+                      description: BIOS Boot partition
+                      vendor: EFI
+                      physical id: e
+                      bus info: scsi@2:0.0.1,14
+                      logical name: /dev/sda14
+                      serial: [REMOVED]
+                      capacity: 4095KiB
+                      capabilities: nofs
+                 *-volume:2
+                      description: Windows FAT volume
+                      vendor: mkfs.fat
+                      physical id: f
+                      bus info: scsi@2:0.0.1,15
+                      logical name: /dev/sda15
+                      logical name: /boot/efi
+                      version: FAT32
+                      serial: [REMOVED]
+                      size: 105MiB
+                      capacity: 105MiB
+                      capabilities: boot fat initialized
+                      configuration: FATs=2 filesystem=fat label=UEFI mount.fstype=vfat mount.options=rw,relatime,fmask=0077,dmask=0077,codepage=437,iocharset=iso8859-1,shortname=mixed,errors=remount-ro state=mounted
+  *-input:0
+       product: Power Button
+       physical id: 1
+       logical name: input0
+       logical name: /dev/input/event0
+       capabilities: platform
+  *-input:1
+       product: Sleep Button
+       physical id: 2
+       logical name: input1
+       logical name: /dev/input/event1
+       capabilities: platform
+  *-input:2
+       product: AT Translated Set 2 keyboard
+       physical id: 3
+       logical name: input2
+       logical name: /dev/input/event2
+       logical name: input2::capslock
+       logical name: input2::numlock
+       logical name: input2::scrolllock
+       capabilities: i8042
+  *-input:3
+       product: VirtualPS/2 VMware VMMouse
+       physical id: 4
+       logical name: input4
+       logical name: /dev/input/event4
+       logical name: /dev/input/mouse1
+       capabilities: i8042
+  *-input:4
+       product: VirtualPS/2 VMware VMMouse
+       physical id: 5
+       logical name: input5
+       logical name: /dev/input/event3
+       logical name: /dev/input/mouse0
+       capabilities: i8042
+
++ free -h
+               total        used        free      shared  buff/cache   available
+Mem:            31Gi       249Mi        29Gi       1.0Mi       1.3Gi        30Gi
+Swap:             0B          0B          0B
+
++ echo 2022-11-19 02:52:42 Downloading...
+2022-11-19 02:52:42 Downloading...
+
++ git describe --always
+yocto-4.0.4-62-geaf8ce9d39
+
++ echo 2022-11-19 03:15:37 Download time: 1375 s
+2022-11-19 03:15:37 Download time: 1375 s
+
++ echo 2022-11-19 03:15:37 Building image...
+2022-11-19 03:15:37 Building image...
+
++ echo 2022-11-19 07:49:31 Image build time: 16434 s
+2022-11-19 07:49:31 Image build time: 16434 s
+
++ echo 2022-11-19 07:49:31 Building SDK...
+2022-11-19 07:49:31 Building SDK...
+
++ echo 2022-11-19 10:48:59 SDK build time: 10768 s
+2022-11-19 10:48:59 SDK build time: 10768 s
+
++ du -sh downloads sstate-cache tmp
+5.2G	downloads
+4.3G	sstate-cache
+57G	tmp
+
++ echo     Download time: 1375 s
+    Image build time: 16434 s
+    SDK build time: 10768 s
+    Total build time: 27202 s
+    Download time: 1375 s
+    Image build time: 16434 s
+    SDK build time: 10768 s
+    Total build time: 27202 s
+
++ free -h
+               total        used        free      shared  buff/cache   available
+Mem:            31Gi       538Mi       251Mi       1.0Mi        30Gi        30Gi
+Swap:             0B          0B          0B

@@ -1,0 +1,622 @@
++ echo Linux hostname 5.15.0-1021-oracle #27-Ubuntu SMP Fri Oct 14 20:04:20 UTC 2022 aarch64 aarch64 aarch64 GNU/Linux
+Linux hostname 5.15.0-1021-oracle #27-Ubuntu SMP Fri Oct 14 20:04:20 UTC 2022 aarch64 aarch64 aarch64 GNU/Linux
+
++ lsb_release -a
+Distributor ID:	Ubuntu
+Description:	Ubuntu 22.04.1 LTS
+Release:	22.04
+Codename:	jammy
+
++ nproc
+1
+
++ sudo lscpu
+Architecture:                    aarch64
+CPU op-mode(s):                  32-bit, 64-bit
+Byte Order:                      Little Endian
+CPU(s):                          1
+On-line CPU(s) list:             0
+Vendor ID:                       ARM
+Model name:                      Neoverse-N1
+Model:                           1
+Thread(s) per core:              1
+Core(s) per cluster:             1
+Socket(s):                       1
+Cluster(s):                      1
+Stepping:                        r3p1
+BogoMIPS:                        50.00
+Flags:                           fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop asimddp ssbs
+NUMA node(s):                    1
+NUMA node0 CPU(s):               0
+Vulnerability Itlb multihit:     Not affected
+Vulnerability L1tf:              Not affected
+Vulnerability Mds:               Not affected
+Vulnerability Meltdown:          Not affected
+Vulnerability Mmio stale data:   Not affected
+Vulnerability Retbleed:          Not affected
+Vulnerability Spec store bypass: Mitigation; Speculative Store Bypass disabled via prctl
+Vulnerability Spectre v1:        Mitigation; __user pointer sanitization
+Vulnerability Spectre v2:        Mitigation; CSV2, BHB
+Vulnerability Srbds:             Not affected
+Vulnerability Tsx async abort:   Not affected
+
++ sudo lshw -sanitize -notime
+computer
+    description: Computer
+    product: KVM Virtual Machine
+    vendor: QEMU
+    version: virt-4.2
+    width: 64 bits
+    capabilities: smbios-3.0.0 dmi-3.0.0 cp15_barrier setend swp tagged_addr_disabled
+    configuration: boot=normal uuid=[REMOVED]
+  *-core
+       description: Motherboard
+       physical id: 0
+     *-cpu
+          description: CPU
+          vendor: QEMU
+          physical id: 400
+          bus info: cpu@0
+          version: virt-4.2
+          slot: CPU 0
+          size: 2GHz
+          capacity: 2GHz
+          configuration: cores=1 enabledcores=1 threads=1
+     *-memory
+          description: System Memory
+          physical id: 1000
+          size: 64GiB
+          capabilities: ecc
+          configuration: errordetection=multi-bit-ecc
+        *-bank:0
+             description: DIMM RAM
+             vendor: QEMU
+             physical id: 0
+             slot: DIMM 0
+             size: 16GiB
+        *-bank:1
+             description: DIMM RAM
+             vendor: QEMU
+             physical id: 1
+             slot: DIMM 1
+             size: 16GiB
+        *-bank:2
+             description: DIMM RAM
+             vendor: QEMU
+             physical id: 2
+             slot: DIMM 2
+             size: 16GiB
+        *-bank:3
+             description: DIMM RAM
+             vendor: QEMU
+             physical id: 3
+             slot: DIMM 3
+             size: 16GiB
+     *-firmware
+          description: BIOS
+          vendor: EFI Development Kit II / OVMF
+          physical id: 0
+          version: 1.5.1
+          date: 06/16/2021
+          size: 96KiB
+          capabilities: uefi virtualmachine
+     *-pci
+          description: Host bridge
+          product: QEMU PCIe Host bridge
+          vendor: Red Hat, Inc.
+          physical id: 100
+          bus info: pci@0000:00:00.0
+          version: 00
+          width: 32 bits
+          clock: 33MHz
+        *-display
+             description: Display controller
+             product: Virtio GPU
+             vendor: Red Hat, Inc.
+             physical id: 1
+             bus info: pci@0000:00:01.0
+             logical name: /dev/fb0
+             version: 01
+             width: 64 bits
+             clock: 33MHz
+             capabilities: msix bus_master cap_list fb
+             configuration: depth=32 driver=virtio-pci latency=0 mode=1024x768 visual=truecolor xres=1024 yres=768
+             resources: iomemory:800-7ff irq:46 memory:13000000-13000fff memory:8003000000-8003003fff
+           *-virtio0
+                description: Virtual I/O device
+                product: virtio_gpudrmfb
+                physical id: 0
+                bus info: virtio@0
+                logical name: /dev/fb0
+                capabilities: fb
+                configuration: depth=32 driver=virtio_gpu resolution=1024,768
+        *-usb
+             description: USB controller
+             product: QEMU XHCI Host Controller
+             vendor: Red Hat, Inc.
+             physical id: 2
+             bus info: pci@0000:00:02.0
+             version: 01
+             width: 64 bits
+             clock: 33MHz
+             capabilities: msix pciexpress xhci bus_master cap_list
+             configuration: driver=xhci_hcd latency=0
+             resources: iomemory:800-7ff irq:47 memory:8003004000-8003007fff
+           *-usbhost:0
+                product: xHCI Host Controller
+                vendor: Linux 5.15.0-1021-oracle xhci-hcd
+                physical id: 0
+                bus info: usb@1
+                logical name: usb1
+                version: 5.15
+                capabilities: usb-2.00
+                configuration: driver=hub slots=4 speed=480Mbit/s
+              *-usb:0
+                   description: Human interface device
+                   product: QEMU QEMU USB Tablet
+                   vendor: QEMU
+                   physical id: 1
+                   bus info: usb@1:1
+                   logical name: input1
+                   logical name: /dev/input/event1
+                   logical name: /dev/input/mouse0
+                   version: 0.00
+                   serial: [REMOVED]
+                   capabilities: usb-2.00 usb
+                   configuration: driver=usbhid maxpower=100mA speed=480Mbit/s
+              *-usb:1
+                   description: Keyboard
+                   product: QEMU QEMU USB Keyboard
+                   vendor: QEMU
+                   physical id: 2
+                   bus info: usb@1:2
+                   logical name: input2
+                   logical name: /dev/input/event2
+                   logical name: input2::capslock
+                   logical name: input2::compose
+                   logical name: input2::kana
+                   logical name: input2::numlock
+                   logical name: input2::scrolllock
+                   version: 0.00
+                   serial: [REMOVED]
+                   capabilities: usb-2.00 usb
+                   configuration: driver=usbhid maxpower=100mA speed=480Mbit/s
+              *-usb:2
+                   description: Mouse
+                   product: QEMU QEMU USB Mouse
+                   vendor: QEMU
+                   physical id: 3
+                   bus info: usb@1:3
+                   logical name: input3
+                   logical name: /dev/input/event3
+                   logical name: /dev/input/mouse1
+                   version: 0.00
+                   serial: [REMOVED]
+                   capabilities: usb-2.00 usb
+                   configuration: driver=usbhid maxpower=100mA speed=480Mbit/s
+           *-usbhost:1
+                product: xHCI Host Controller
+                vendor: Linux 5.15.0-1021-oracle xhci-hcd
+                physical id: 1
+                bus info: usb@2
+                logical name: usb2
+                version: 5.15
+                capabilities: usb-3.00
+                configuration: driver=hub slots=4 speed=5000Mbit/s
+        *-network
+             description: Ethernet controller
+             product: Virtio network device
+             vendor: Red Hat, Inc.
+             physical id: 3
+             bus info: pci@0000:00:03.0
+             version: 01
+             width: 64 bits
+             clock: 33MHz
+             capabilities: msix bus_master cap_list
+             configuration: driver=virtio-pci latency=0
+             resources: iomemory:800-7ff irq:48 memory:13001000-13001fff memory:8003008000-800300bfff
+           *-virtio1
+                description: Ethernet interface
+                physical id: 0
+                bus info: virtio@1
+                logical name: enp0s3
+                serial: [REMOVED]
+                capabilities: ethernet physical
+                configuration: autonegotiation=off broadcast=yes driver=virtio_net driverversion=1.0.0 ip=[REMOVED] link=yes multicast=yes
+        *-pci:0
+             description: PCI bridge
+             product: QEMU PCIe Root port
+             vendor: Red Hat, Inc.
+             physical id: 10
+             bus info: pci@0000:00:10.0
+             version: 00
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pciexpress msix normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:45 memory:13002000-13002fff memory:10000000-101fffff ioport:8000000000(size=2097152)
+        *-pci:1
+             description: PCI bridge
+             product: QEMU PCIe Root port
+             vendor: Red Hat, Inc.
+             physical id: 10.1
+             bus info: pci@0000:00:10.1
+             version: 00
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pciexpress msix normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:45 memory:13003000-13003fff memory:10200000-103fffff ioport:8000200000(size=2097152)
+        *-pci:2
+             description: PCI bridge
+             product: QEMU PCIe Root port
+             vendor: Red Hat, Inc.
+             physical id: 10.2
+             bus info: pci@0000:00:10.2
+             version: 00
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pciexpress msix normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:45 memory:13004000-13004fff memory:10400000-105fffff ioport:8000400000(size=2097152)
+        *-pci:3
+             description: PCI bridge
+             product: QEMU PCIe Root port
+             vendor: Red Hat, Inc.
+             physical id: 10.3
+             bus info: pci@0000:00:10.3
+             version: 00
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pciexpress msix normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:45 memory:13005000-13005fff memory:10600000-107fffff ioport:8000600000(size=2097152)
+        *-pci:4
+             description: PCI bridge
+             product: QEMU PCIe Root port
+             vendor: Red Hat, Inc.
+             physical id: 10.4
+             bus info: pci@0000:00:10.4
+             version: 00
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pciexpress msix normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:45 memory:13006000-13006fff memory:10800000-109fffff ioport:8000800000(size=2097152)
+        *-pci:5
+             description: PCI bridge
+             product: QEMU PCIe Root port
+             vendor: Red Hat, Inc.
+             physical id: 10.5
+             bus info: pci@0000:00:10.5
+             version: 00
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pciexpress msix normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:45 memory:13007000-13007fff memory:10a00000-10bfffff ioport:8000a00000(size=2097152)
+        *-pci:6
+             description: PCI bridge
+             product: QEMU PCIe Root port
+             vendor: Red Hat, Inc.
+             physical id: 10.6
+             bus info: pci@0000:00:10.6
+             version: 00
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pciexpress msix normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:45 memory:13008000-13008fff memory:10c00000-10dfffff ioport:8000c00000(size=2097152)
+        *-pci:7
+             description: PCI bridge
+             product: QEMU PCIe Root port
+             vendor: Red Hat, Inc.
+             physical id: 10.7
+             bus info: pci@0000:00:10.7
+             version: 00
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pciexpress msix normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:45 memory:13009000-13009fff memory:10e00000-10ffffff ioport:8000e00000(size=2097152)
+        *-pci:8
+             description: PCI bridge
+             product: QEMU PCIe Root port
+             vendor: Red Hat, Inc.
+             physical id: 11
+             bus info: pci@0000:00:11.0
+             version: 00
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pciexpress msix normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:46 memory:1300a000-1300afff memory:11000000-111fffff ioport:8001000000(size=2097152)
+        *-pci:9
+             description: PCI bridge
+             product: QEMU PCIe Root port
+             vendor: Red Hat, Inc.
+             physical id: 11.1
+             bus info: pci@0000:00:11.1
+             version: 00
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pciexpress msix normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:46 memory:1300b000-1300bfff ioport:f000(size=4096) memory:11200000-113fffff ioport:8001200000(size=2097152)
+        *-pci:10
+             description: PCI bridge
+             product: QEMU PCIe Root port
+             vendor: Red Hat, Inc.
+             physical id: 11.2
+             bus info: pci@0000:00:11.2
+             version: 00
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pciexpress msix normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:46 memory:1300c000-1300cfff ioport:e000(size=4096) memory:11400000-115fffff ioport:8001400000(size=2097152)
+        *-pci:11
+             description: PCI bridge
+             product: QEMU PCIe Root port
+             vendor: Red Hat, Inc.
+             physical id: 11.3
+             bus info: pci@0000:00:11.3
+             version: 00
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pciexpress msix normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:46 memory:1300d000-1300dfff ioport:d000(size=4096) memory:11600000-117fffff ioport:8001600000(size=2097152)
+        *-pci:12
+             description: PCI bridge
+             product: QEMU PCIe Root port
+             vendor: Red Hat, Inc.
+             physical id: 11.4
+             bus info: pci@0000:00:11.4
+             version: 00
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pciexpress msix normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:46 memory:1300e000-1300efff ioport:c000(size=4096) memory:11800000-119fffff ioport:8001800000(size=2097152)
+        *-pci:13
+             description: PCI bridge
+             product: QEMU PCIe Root port
+             vendor: Red Hat, Inc.
+             physical id: 11.5
+             bus info: pci@0000:00:11.5
+             version: 00
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pciexpress msix normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:46 memory:1300f000-1300ffff ioport:b000(size=4096) memory:11a00000-11bfffff ioport:8001a00000(size=2097152)
+        *-pci:14
+             description: PCI bridge
+             product: QEMU PCIe Root port
+             vendor: Red Hat, Inc.
+             physical id: 11.6
+             bus info: pci@0000:00:11.6
+             version: 00
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pciexpress msix normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:46 memory:13010000-13010fff ioport:a000(size=4096) memory:11c00000-11dfffff ioport:8001c00000(size=2097152)
+        *-pci:15
+             description: PCI bridge
+             product: QEMU PCIe Root port
+             vendor: Red Hat, Inc.
+             physical id: 11.7
+             bus info: pci@0000:00:11.7
+             version: 00
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pciexpress msix normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:46 memory:13011000-13011fff ioport:9000(size=4096) memory:11e00000-11ffffff ioport:8001e00000(size=2097152)
+        *-pci:16
+             description: PCI bridge
+             product: QEMU PCIe Root port
+             vendor: Red Hat, Inc.
+             physical id: 12
+             bus info: pci@0000:00:12.0
+             version: 00
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pciexpress msix normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:47 memory:13012000-13012fff ioport:8000(size=4096) memory:12000000-121fffff ioport:8002000000(size=2097152)
+        *-pci:17
+             description: PCI bridge
+             product: QEMU PCIe Root port
+             vendor: Red Hat, Inc.
+             physical id: 12.1
+             bus info: pci@0000:00:12.1
+             version: 00
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pciexpress msix normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:47 memory:13013000-13013fff ioport:7000(size=4096) memory:12200000-123fffff ioport:8002200000(size=2097152)
+        *-pci:18
+             description: PCI bridge
+             product: QEMU PCIe Root port
+             vendor: Red Hat, Inc.
+             physical id: 12.2
+             bus info: pci@0000:00:12.2
+             version: 00
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pciexpress msix normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:47 memory:13014000-13014fff ioport:6000(size=4096) memory:12400000-125fffff ioport:8002400000(size=2097152)
+        *-pci:19
+             description: PCI bridge
+             product: QEMU PCIe Root port
+             vendor: Red Hat, Inc.
+             physical id: 12.3
+             bus info: pci@0000:00:12.3
+             version: 00
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pciexpress msix normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:47 memory:13015000-13015fff ioport:5000(size=4096) memory:12600000-127fffff ioport:8002600000(size=2097152)
+        *-pci:20
+             description: PCI bridge
+             product: QEMU PCIe Root port
+             vendor: Red Hat, Inc.
+             physical id: 12.4
+             bus info: pci@0000:00:12.4
+             version: 00
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pciexpress msix normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:47 memory:13016000-13016fff ioport:4000(size=4096) memory:12800000-129fffff ioport:8002800000(size=2097152)
+        *-pci:21
+             description: PCI bridge
+             product: QEMU PCIe Root port
+             vendor: Red Hat, Inc.
+             physical id: 12.5
+             bus info: pci@0000:00:12.5
+             version: 00
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pciexpress msix normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:47 memory:13017000-13017fff ioport:3000(size=4096) memory:12a00000-12bfffff ioport:8002a00000(size=2097152)
+        *-pci:22
+             description: PCI bridge
+             product: QEMU PCIe Root port
+             vendor: Red Hat, Inc.
+             physical id: 12.6
+             bus info: pci@0000:00:12.6
+             version: 00
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pciexpress msix normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:47 memory:13018000-13018fff ioport:2000(size=4096) memory:12c00000-12dfffff ioport:8002c00000(size=2097152)
+        *-pci:23
+             description: PCI bridge
+             product: QEMU PCIe Root port
+             vendor: Red Hat, Inc.
+             physical id: 12.7
+             bus info: pci@0000:00:12.7
+             version: 00
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pciexpress msix normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:47 memory:13019000-13019fff ioport:1000(size=4096) memory:12e00000-12ffffff ioport:8002e00000(size=2097152)
+           *-scsi
+                description: SCSI storage controller
+                product: Virtio SCSI
+                vendor: Red Hat, Inc.
+                physical id: 0
+                bus info: pci@0000:18:00.0
+                version: 01
+                width: 64 bits
+                clock: 33MHz
+                capabilities: scsi msix pm pciexpress bus_master cap_list
+                configuration: driver=virtio-pci latency=0
+                resources: iomemory:800-7ff irq:47 memory:12e00000-12e00fff memory:8002e00000-8002e03fff
+              *-virtio2
+                   description: Virtual I/O device
+                   physical id: 0
+                   bus info: virtio@2
+                   logical name: scsi0
+                   configuration: driver=virtio_scsi
+                 *-disk
+                      description: SCSI Disk
+                      product: BlockVolume
+                      vendor: ORACLE
+                      physical id: 0.0.1
+                      bus info: scsi@0:0.0.1
+                      logical name: /dev/sda
+                      version: 1.0
+                      size: 1TiB (1099GB)
+                      capabilities: gpt-1.00 partitioned partitioned:gpt
+                      configuration: ansiversion=6 guid=6eb910c1-0911-4964-bfc1-6e3c36f0b905 logicalsectorsize=512 sectorsize=4096
+                    *-volume:0
+                         description: EXT4 volume
+                         vendor: Linux
+                         physical id: 1
+                         bus info: scsi@0:0.0.1,1
+                         logical name: /dev/sda1
+                         logical name: /
+                         version: 1.0
+                         serial: [REMOVED]
+                         size: 2970MiB
+                         capacity: 1023GiB
+                         capabilities: journaled extended_attributes large_files huge_files dir_nlink recover 64bit extents ext4 ext2 initialized
+                         configuration: created=2022-11-06 02:44:39 filesystem=ext4 label=cloudimg-rootfs lastmountpoint=/ mount.fstype=ext4 mount.options=rw,relatime,discard,errors=remount-ro state=mounted
+                    *-volume:1 UNCLAIMED
+                         description: Windows FAT volume
+                         vendor: mkfs.fat
+                         physical id: f
+                         bus info: scsi@0:0.0.1,15
+                         version: FAT32
+                         serial: [REMOVED]
+                         size: 98MiB
+                         capacity: 99MiB
+                         capabilities: boot fat initialized
+                         configuration: FATs=2 filesystem=fat label=UEFI
+     *-pnp00:00
+          product: PnP device PNP0c02
+          physical id: 1
+          capabilities: pnp
+          configuration: driver=system
+  *-input
+       product: Power Button
+       physical id: 1
+       logical name: input0
+       logical name: /dev/input/event0
+       capabilities: platform
+
++ free -h
+               total        used        free      shared  buff/cache   available
+Mem:            62Gi       312Mi        61Gi       4.0Mi       1.2Gi        61Gi
+Swap:             0B          0B          0B
+
++ echo 2022-11-18 11:12:38 Downloading...
+2022-11-18 11:12:38 Downloading...
+
++ git describe --always
+yocto-4.0.4-62-geaf8ce9d39
+
++ echo 2022-11-18 12:38:11 Download time: 5133 s
+2022-11-18 12:38:11 Download time: 5133 s
+
++ echo 2022-11-18 12:38:11 Building image...
+2022-11-18 12:38:11 Building image...
+
++ echo 2022-11-18 20:30:10 Image build time: 28319 s
+2022-11-18 20:30:10 Image build time: 28319 s
+
++ echo 2022-11-18 20:30:10 Building SDK...
+2022-11-18 20:30:10 Building SDK...
+
++ echo 2022-11-19 01:48:27 SDK build time: 19097 s
+2022-11-19 01:48:27 SDK build time: 19097 s
+
++ du -sh downloads sstate-cache tmp
+5.2G	downloads
+4.3G	sstate-cache
+57G	tmp
+
++ echo     Download time: 5133 s
+    Image build time: 28319 s
+    SDK build time: 19097 s
+    Total build time: 47416 s
+    Download time: 5133 s
+    Image build time: 28319 s
+    SDK build time: 19097 s
+    Total build time: 47416 s
+
++ free -h
+               total        used        free      shared  buff/cache   available
+Mem:            62Gi       714Mi       2.4Gi       4.0Mi        59Gi        61Gi
+Swap:             0B          0B          0B
