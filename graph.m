@@ -52,12 +52,13 @@ ram_AMD_EPYC = data_AMD_EPYC(:,4);
 time_AMD_EPYC = (data_AMD_EPYC(:,8) + data_AMD_EPYC(:,9)) / 3600;
 
 Y = time_AMD_EPYC;
-X = [1./cores_AMD_EPYC ones(length(cores_AMD_EPYC), 1)];
+X = [1./cores_AMD_EPYC ones(size(cores_AMD_EPYC))];
 
 % Least squares
 W = inv(X' * X) * X' * Y;
 A1 = W(1)
 B1 = W(2)
+SQErr1 = sum((Y - X * W) .^ 2)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Virtual Server, ARM Neoverse-N1 @ 2GHz
@@ -85,12 +86,13 @@ ram_ARM_Neoverse = data_ARM_Neoverse(:,4);
 time_ARM_Neoverse = (data_ARM_Neoverse(:,8) + data_ARM_Neoverse(:,9)) / 3600;
 
 Y = time_ARM_Neoverse;
-X = [1./cores_ARM_Neoverse ones(length(cores_ARM_Neoverse), 1)];
+X = [1./cores_ARM_Neoverse ones(size(cores_ARM_Neoverse))];
 
 % Least squares
 W = inv(X' * X) * X' * Y;
 A2 = W(1)
 B2 = W(2)
+SQErr2 = sum((Y - X * W) .^ 2)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Agregate all data
