@@ -10,22 +10,48 @@ data_misc = [
 %                             0_HD
 %                      Total  1_SSD  Avail. Used
 %   Machine Cores GHz  RAM_GB 2_NVMe RAM_GB Swap_GB Image_s SDK_s
+    % Desktop, Intel(R) Core(TM) i5-3330 CPU @ 3.00GHz
     1       4     3.0  16     0      10     0       14315   6784
+    % Laptop Dell Inspiron 5547, Intel(R) Core(TM) i7-4510U CPU @ 2.00GHz
     2       4     2.0  16     1      14     0       15404   10638
+    % Laptop Dell Vostro 5480, Intel(R) Core(TM) i5-5200U CPU @ 2.20GHz
     3.1     4     2.2  8      1      7.2    0       15133   10079
+    % Laptop Dell Latitude E5440, Intel(R) Core(TM) i5-4200U CPU @ 1.60GHz
     4.1     4     1.6  8      0      7.3    0       14631   9926
+    % Server, Intel(R) Xeon(R) Bronze 3204 CPU @ 1.90GHz
     5.1     6     1.9  32     1      30     0       6598    4675
+    % Server, Intel(R) Xeon(R) E-2286G CPU @ 4.00GHz
     1010    12    4.0  32     1      30     0       2973    2116
+    % Server, Intel(R) Xeon(R) CPU E3-1270 v6 @ 3.80GHz
     1011    8     3.8  32     1      30     0       4329    3006
+    % Server, Intel(R) Xeon(R) E-2288G CPU @ 3.70GHz
     1012    16    3.7  128    2      124    0       2214    1602
+    % Server, Intel(R) Xeon(R) E-2388G CPU @ 3.20GHz
     1013    16    3.2  128    2      124    0       2471    1824
+    % Virtual Server, Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz
     1111    4     2.6  32     -1     30     0       8415    5649
     1112    2     2.6  32     -1     30     0       16434   10768
+    % Virtual Server, Intel(R) Xeon(R) Platinum 8167M CPU @ 2.00GHz
+    1113    4     2.0  32     -1     28     0       15749   10711
+    1114    2     2.0  16     -1     14     0       31365   20547
+    % Virtual Server, AMD EPYC 7551 32-Core Processor @ 2GHz
+    1115    8     2.0  32     -1     30     0       6977    4945
+    1116    4     2.0  16     -1     15     0       13504   9180
+    1117    2     2.0  8      -1     7.2    0       26409   17592
 ];
 
 cores_misc = data_misc(:,2);
 ram_misc = data_misc(:,4);
 time_misc = (data_misc(:,8) + data_misc(:,9)) / 3600;
+
+Y = time_misc;
+X = [1./cores_misc ones(size(cores_misc))];
+
+% Least squares
+W = inv(X' * X) * X' * Y;
+A0 = W(1)
+B0 = W(2)
+SQErr0 = sum((Y - X * W) .^ 2)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Virtual Server, AMD EPYC-Rome Processor @ 2 GHz
