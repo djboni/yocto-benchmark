@@ -165,7 +165,7 @@ Notes:
 
 Notes:
 
-- See the build workflow in [docs/Memory-Usage-Workflow.md](docs/Memory-Usage-Workflow.md])
+- See the build workflow in [docs/Memory-Usage-Workflow.md](docs/Memory-Usage-Workflow.md)
 
   - For Memory Usage (one build) make NUM=1
   - For Concurrent Builds (multiple builds make NUM > 1)
