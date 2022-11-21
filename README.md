@@ -91,6 +91,7 @@ From my perspective there are a few main takeaways:
 
 - Have enough RAM to avoid swapping and being out of memory.
 - Have a fast enough disk (reduce `B`).
+- Have a good processor (reduce `A`).
 - Have more processing cores (reduce `A/x`).
 - More RAM may help with caching the disk.
 
