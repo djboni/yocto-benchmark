@@ -84,8 +84,11 @@ number of cores but different RAM size, revealed a very small difference
 sometimes in favor of the smaller RAM. (Maybe the disks in the data
 centers have their own huge RAM caches.)
 
-Tests with actual hardware using (slow) HDs, SSDs and (fast) NVMes
-would allow an easier observation of the effects of RAM caching.
+A few tests with the hardware
+"NAS Server, Intel(R) Pentium(R) Silver N6005 @ 2.00GHz"
+using (slow) HD, SSD and (fast) NVMe allow a better observation of the
+effects of RAM caching and agree with the expectation that more RAM
+provide a faster build.
 
 From my perspective there are a few main takeaways:
 
@@ -97,9 +100,21 @@ From my perspective there are a few main takeaways:
 
 ## Cores and RAM x Build Time
 
-![Build time vs Cores-GHz and RAM - 2D](images/build-time-2.svg)
+Line y1: "Virtual Server, AMD EPYC-Rome Processor @ 2 GHz"
+
+Line y2: "Virtual Server, ARM Neoverse-N1 @ 2GHz"
 
 ![Build time vs Cores-GHz and RAM - 3D](images/build-time-1.svg)
+
+![Build time vs Cores-GHz and RAM - 2D](images/build-time-2.svg)
+
+## RAM and Disk x Build Time
+
+All lines: "NAS Server, Intel(R) Pentium(R) Silver N6005 @ 2.00GHz"
+
+![Build time vs RAM-GHz and RAM - 2D](images/build-time-3.svg)
+
+## Table
 
 | Machine | Cores | RAM GB | SSD/HD | Time     | Description                                                          |
 | ------- | ----- | ------ | ------ | -------- | -------------------------------------------------------------------- |
@@ -123,6 +138,12 @@ From my perspective there are a few main takeaways:
 | 1103    | 4     | 96     | ?      | 3h34     | Virtual Server, ARM Neoverse-N1 @ 2GHz                               |
 | 1108    | 4     | 8      | ?      | 3h41     | Virtual Server, ARM Neoverse-N1 @ 2GHz                               |
 | 1111    | 4     | 32     | ?      | 3h54     | Virtual Server, Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz         |
+| 6.22    | 4     | 64     | NVMe   | 5h18     | NAS Server, Intel(R) Pentium(R) Silver N6005 @ 2.00GHz               |
+| 6.12    | 4     | 64     | SSD    | 5h21     | NAS Server, Intel(R) Pentium(R) Silver N6005 @ 2.00GHz               |
+| 6.21    | 4     | 32     | NVMe   | 5h25     | NAS Server, Intel(R) Pentium(R) Silver N6005 @ 2.00GHz               |
+| 6.11    | 4     | 32     | SSD    | 5h26     | NAS Server, Intel(R) Pentium(R) Silver N6005 @ 2.00GHz               |
+| 6.02    | 4     | 64     | HD     | 5h28     | NAS Server, Intel(R) Pentium(R) Silver N6005 @ 2.00GHz               |
+| 6.01    | 4     | 32     | HD     | 5h32     | NAS Server, Intel(R) Pentium(R) Silver N6005 @ 2.00GHz               |
 | 1008    | 2     | 16     | NVMe   | 5h49     | Virtual Server, AMD EPYC-Rome Processor @ 2 GHz                      |
 | 1       | 4     | 16     | HD     | 5h52     | Desktop, Intel(R) Core(TM) i5-3330 CPU @ 3.00GHz                     |
 | 1116    | 4     | 16     | ?      | 6h18     | Virtual Server, AMD EPYC 7551 32-Core Processor @ 2GHz               |

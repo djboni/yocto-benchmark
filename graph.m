@@ -2,6 +2,8 @@
 
 clear
 
+h = @(x)([floor(x/3600) round((x/3600-floor(x/3600))*60)]);
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Misc hardware
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -121,12 +123,53 @@ B2 = W(2)
 SQErr2 = sum((Y - X * W) .^ 2)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% NAS Server, Intel(R) Pentium(R) Silver N6005 @ 2.00GHz
+% Best fit for z = A*x + B*y + C
+% HD: 320 GB
+% SSD: 120 GB
+% NVMe: 1 TB
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+data_Disk_RAM = [
+%                             0_HD
+%                      Total  1_SSD  Avail. Used
+%   Machine Cores GHz  RAM_GB 2_NVMe RAM_GB Swap_GB Image_s SDK_s
+    6.01    4     2.0  32     0      30     0       11845   8098
+    6.02    4     2.0  64     0      62     0       11692   7961
+    6.11    4     2.0  32     1      30     0       11664   7912
+    6.12    4     2.0  64     1      62     0       11500   7781
+    6.21    4     2.0  32     2      30     0       11612   7885
+    6.22    4     2.0  64     2      61     0       11401   7708
+];
+
+cores_Disk_RAM = data_Disk_RAM(:,2);
+ram_Disk_RAM = data_Disk_RAM(:,4);
+storage_Disk_RAM = data_Disk_RAM(:,5);
+time_Disk_RAM = (data_Disk_RAM(:,8) + data_Disk_RAM(:,9)) / 3600;
+
+ram_Disk_RAM_ticks = unique(ram_Disk_RAM);
+storage_Disk_RAM_ticks = unique(storage_Disk_RAM);
+
+Y = time_Disk_RAM;
+X = [storage_Disk_RAM ram_Disk_RAM ones(size(cores_Disk_RAM))];
+
+% Least squares
+W = inv(X' * X) * X' * Y;
+A3 = W(1)
+B3 = W(2)
+C3 = W(3)
+SQErr2 = sum((Y - X * W) .^ 2)
+
+eq_3 = sprintf('z = %.3gx%.3g y%+.2g', [A3 B3 C3])
+fig3_title = ['Eq.: ', eq_3];
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Agregate all data
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-cores_all = [cores_misc; cores_AMD_EPYC; cores_ARM_Neoverse];
-ram_all   = [ram_misc;   ram_AMD_EPYC;   ram_ARM_Neoverse];
-time_all  = [time_misc;  time_AMD_EPYC;  time_ARM_Neoverse];
+cores_all = [cores_misc; cores_AMD_EPYC; cores_ARM_Neoverse; cores_Disk_RAM];
+ram_all   = [ram_misc;   ram_AMD_EPYC;   ram_ARM_Neoverse;   ram_Disk_RAM];
+time_all  = [time_misc;  time_AMD_EPYC;  time_ARM_Neoverse;  time_Disk_RAM];
 
 cores_ticks = unique(cores_all);
 ram_ticks = unique(ram_all);
@@ -163,9 +206,9 @@ axis(a)
 
 eq_2a1 = sprintf('y_1 = %.3g/x% +.2g', [A1 B1])
 eq_2a2 = sprintf('y_2 = %.3g/x% +.2g', [A2 B2])
-graph_title = ['Lines: ', eq_2a1, ' - ', eq_2a2];
+fig2_title = ['Lines: ', eq_2a1, ' - ', eq_2a2];
 
-title(graph_title)
+title(fig2_title)
 xlabel('Cores')
 ylabel('RAM [GB]')
 zlabel('Build time [h]')
@@ -208,7 +251,7 @@ a(3) = 0;
 a(4) = ceil(max(time_all));
 axis(a)
 
-title(graph_title)
+title(fig2_title)
 xlabel('Cores')
 ylabel('Build time [h]')
 legend({
@@ -244,3 +287,36 @@ grid on
 hold off
 
 print images/build-time-2.svg
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Figure 3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+figure(3),clf
+hold on
+
+plot(ram_Disk_RAM(storage_Disk_RAM==0), time_Disk_RAM(storage_Disk_RAM==0), '-x')
+plot(ram_Disk_RAM(storage_Disk_RAM==1), time_Disk_RAM(storage_Disk_RAM==1), '-x')
+plot(ram_Disk_RAM(storage_Disk_RAM==2), time_Disk_RAM(storage_Disk_RAM==2), '-x')
+xticks(unique(ram_Disk_RAM))
+
+% No negative build time
+a = axis();
+a(1) = min(ram_Disk_RAM);
+a(2) = max(ram_Disk_RAM);
+%a(3) = 0;
+axis(a)
+
+title(fig3_title)
+xlabel('RAM [GB]')
+ylabel('Build time [h]')
+legend({
+    'HD',
+    'SSD',
+    'NVMe',
+    })
+grid on
+
+hold off
+
+print images/build-time-3.svg
